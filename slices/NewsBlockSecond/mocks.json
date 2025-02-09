@@ -1,0 +1,24 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"newsblocktitlesecond": {
+				"__TYPE__": "FieldContent",
+				"value": "real",
+				"type": "Text"
+			},
+			"newsblockdescriptionsecond": {
+				"__TYPE__": "FieldContent",
+				"value": "aboard",
+				"type": "Text"
+			},
+			"newsblockvideosecond": {
+				"__TYPE__": "FieldContent",
+				"value": "luck",
+				"type": "Text"
+			}
+		},
+		"items": []
+	}
+]

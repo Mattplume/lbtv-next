@@ -1,0 +1,24 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"newsblocktitlefirst": {
+				"__TYPE__": "FieldContent",
+				"value": "lack",
+				"type": "Text"
+			},
+			"newsblockdescriptionfirst": {
+				"__TYPE__": "FieldContent",
+				"value": "bent",
+				"type": "Text"
+			},
+			"newsblockvideofirst": {
+				"__TYPE__": "FieldContent",
+				"value": "arrive",
+				"type": "Text"
+			}
+		},
+		"items": []
+	}
+]
