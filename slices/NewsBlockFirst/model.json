@@ -1,0 +1,40 @@
+{
+  "id": "news_block_first",
+  "type": "SharedSlice",
+  "name": "NewsBlockFirst",
+  "description": "NewsBlockFirst",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "newsblocktitlefirst": {
+          "type": "Text",
+          "config": {
+            "label": "newsBlockTitleFirst",
+            "placeholder": "Renseignez le titre de votre news"
+          }
+        },
+        "newsblockdescriptionfirst": {
+          "type": "Text",
+          "config": {
+            "label": "newsBlockDescriptionFirst",
+            "placeholder": "Renseigner la description de votre news"
+          }
+        },
+        "newsblockvideofirst": {
+          "type": "Text",
+          "config": {
+            "label": "newsBlockVideoFirst",
+            "placeholder": "Renseignez l'URL de votre news"
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}
