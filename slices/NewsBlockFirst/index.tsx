@@ -17,7 +17,9 @@ const NewsBlockFirst: FC<NewsBlockFirstProps> = ({ slice }) => {
 			data-slice-type={slice.slice_type}
 			data-slice-variation={slice.variation}
 		>
-			{slice.primary.newsblocktitlefirst}
+			<h3>{slice.primary.newsblocktitlefirst}</h3>
+			<p>{slice.primary.newsblockdescriptionfirst}</p>
+			{slice.primary.newsblockvideofirst}
 		</section>
 	);
 };

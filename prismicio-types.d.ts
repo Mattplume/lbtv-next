@@ -98,6 +98,16 @@ export interface NewsBlockFirstSliceDefaultPrimary {
   newsblockdescriptionfirst: prismic.KeyTextField;
 
   /**
+   * newsBlockVideoFirstButTwo field in *NewsBlockFirst → Default → Primary*
+   *
+   * - **Field Type**: Embed
+   * - **Placeholder**: Renseigner l'URL de votre news
+   * - **API ID Path**: news_block_first.default.primary.newsblockvideofirstbuttwo
+   * - **Documentation**: https://prismic.io/docs/field#embed
+   */
+  newsblockvideofirstbuttwo: prismic.EmbedField;
+
+  /**
    * newsBlockVideoFirst field in *NewsBlockFirst → Default → Primary*
    *
    * - **Field Type**: Text

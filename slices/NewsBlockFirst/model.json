@@ -26,6 +26,13 @@
             "placeholder": "Renseigner la description de votre news"
           }
         },
+        "newsblockvideofirstbuttwo": {
+          "type": "Embed",
+          "config": {
+            "label": "newsBlockVideoFirstButTwo",
+            "placeholder": "Renseigner l'URL de votre news"
+          }
+        },
         "newsblockvideofirst": {
           "type": "Text",
           "config": {

@@ -5,13 +5,13 @@
 		"primary": {
 			"newsblocktitlefirst": {
 				"__TYPE__": "FieldContent",
-				"value": "lack",
-				"type": "Text"
+				"type": "Text",
+				"value": "Film de l'année 204 fou et mitik!"
 			},
 			"newsblockdescriptionfirst": {
 				"__TYPE__": "FieldContent",
-				"value": "bent",
-				"type": "Text"
+				"type": "Text",
+				"value": "C'est un super film"
 			},
 			"newsblockvideofirst": {
 				"__TYPE__": "FieldContent",
