@@ -17,3 +17,11 @@ body {
 h3 {
 	font-size: 1.2rem;
 }
+
+.text-white-link {
+	@apply text-white hover:text-gray-300 transition-colors duration-300;
+}
+
+.icon-white-link {
+	@apply text-white hover:text-gray-300 transition-colors duration-300;
+}

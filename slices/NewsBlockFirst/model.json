@@ -26,10 +26,10 @@
             "placeholder": "Renseigner la description de votre news"
           }
         },
-        "newsblockvideofirstbuttwo": {
+        "newsblockvideosoonfirst": {
           "type": "Embed",
           "config": {
-            "label": "newsBlockVideoFirstButTwo",
+            "label": "newsBlockVideoSoonFirst",
             "placeholder": "Renseigner l'URL de votre news"
           }
         },
