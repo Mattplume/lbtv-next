@@ -26,18 +26,18 @@
             "placeholder": "Renseigner la description de votre news"
           }
         },
-        "newsblockvideosoonfirst": {
-          "type": "Embed",
-          "config": {
-            "label": "newsBlockVideoSoonFirst",
-            "placeholder": "Renseigner l'URL de votre news"
-          }
-        },
-        "newsblockvideofirst": {
+        "newsblockvideoiframe": {
           "type": "Text",
           "config": {
-            "label": "newsBlockVideoFirst",
-            "placeholder": "Renseignez l'URL de votre news"
+            "label": "newsBlockVideoIframe",
+            "placeholder": "Renseigner le code d'intégration de votre vidéo"
+          }
+        },
+        "videoiframe": {
+          "type": "Embed",
+          "config": {
+            "label": "videoIframe",
+            "placeholder": ""
           }
         }
       },
