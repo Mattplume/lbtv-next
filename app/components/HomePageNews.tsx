@@ -40,16 +40,18 @@ const HomePageNews: FC<HomePageNewsProps> = ({
 		<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 			{newsBlockFirstSlice && (
 				<HomePageNewsCard
-					title={newsBlockFirstSlice.primary.newsblocktitlefirst}
-					iframeUrl={newsBlockFirstSlice.primary.newsblockvideoiframe}
-					description={newsBlockFirstSlice.primary.newsblockdescriptionfirst}
+					title={newsBlockFirstSlice.primary.newsblocktitlefirst ?? ""}
+					iframeUrl={newsBlockFirstSlice.primary.newsblockvideoiframe ?? ""}
+					description={
+						newsBlockFirstSlice.primary.newsblockdescriptionfirst ?? ""
+					}
 				/>
 			)}
 			{newsBlockSecondSlice && (
 				<HomePageNewsCard
-					title={newsBlockSecondSlice.primary.newsblocktitlesecond}
-					iframeUrl={newsBlockSecondSlice.primary.newsblockvideosecond}
-					description={newsBlockSecondSlice.primary.newsblocktitlesecond}
+					title={newsBlockSecondSlice.primary.newsblocktitlesecond ?? ""}
+					iframeUrl={newsBlockSecondSlice.primary.newsblockvideosecond ?? ""}
+					description={newsBlockSecondSlice.primary.newsblocktitlesecond ?? ""}
 				/>
 			)}
 		</div>
