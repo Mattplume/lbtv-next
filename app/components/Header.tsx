@@ -18,8 +18,8 @@ const Header: React.FC = () => {
 							<ImageComponent
 								src="/logo.png"
 								alt="Logo de La Baule TV"
-								width={100}
-								height={30}
+								width={130}
+								height={35}
 							/>
 						</Link>
 					</div>

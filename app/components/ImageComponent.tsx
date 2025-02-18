@@ -23,7 +23,6 @@ const ImageComponent: FC<ImageProps> = ({
 			width={width}
 			height={height}
 			priority={priority}
-			className="w-full h-auto"
 		/>
 	);
 };
