@@ -12,13 +12,12 @@ export default async function Page() {
 	const page = await client.getSingle("homepage");
 
 	const newsBlockFirstSlice = page.data.slices.find(
-		(slice): slice is Content.NewsBlockFirstSlice =>
-			slice.slice_type === "news_block_first"
-	);
+		(slice) => slice.slice_type === "news_block_first"
+	) as Content.NewsBlockFirstSlice | undefined;
+
 	const newsBlockSecondSlice = page.data.slices.find(
-		(slice): slice is Content.NewsBlockSecondSlice =>
-			slice.slice_type === "news_block_second"
-	);
+		(slice) => slice.slice_type === "news_block_second"
+	) as Content.NewsBlockSecondSlice | undefined;
 
 	return (
 		<>
@@ -31,8 +30,8 @@ export default async function Page() {
 				components={components}
 			/>
 			<HomePageNews
-				newsBlockFirstSlice={newsBlockFirstSlice}
-				newsBlockSecondSlice={newsBlockSecondSlice}
+				newsBlockFirstSlice={newsBlockFirstSlice!}
+				newsBlockSecondSlice={newsBlockSecondSlice!}
 			/>
 			<Feed />
 		</>
