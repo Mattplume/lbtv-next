@@ -5,14 +5,20 @@ export default {
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/slices/**/*.{js,ts,jsx,tsx,mdx}"
+    "./src/slices/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
-        darkColor:"var(--darkColor)"
+        darkColor: "var(--darkColor)",
+        navLink: "white",
+        navLinkHover: "red",
+        cardShadow: "0 1 8 2 rgba(17 20 41 0.6)"
+      },
+      transitionProperty: {
+        colors: "color",
       },
     },
   },

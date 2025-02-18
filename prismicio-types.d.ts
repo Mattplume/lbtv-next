@@ -98,14 +98,14 @@ export interface NewsBlockFirstSliceDefaultPrimary {
   newsblockdescriptionfirst: prismic.KeyTextField;
 
   /**
-   * newsBlockVideoFirst field in *NewsBlockFirst → Default → Primary*
+   * newsBlockVideoIframe field in *NewsBlockFirst → Default → Primary*
    *
    * - **Field Type**: Text
-   * - **Placeholder**: Renseignez l'URL de votre news
-   * - **API ID Path**: news_block_first.default.primary.newsblockvideofirst
+   * - **Placeholder**: Renseigner le code d'intégration de votre vidéo
+   * - **API ID Path**: news_block_first.default.primary.newsblockvideoiframe
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
-  newsblockvideofirst: prismic.KeyTextField;
+  newsblockvideoiframe: prismic.KeyTextField;
 }
 
 /**
@@ -163,7 +163,7 @@ export interface NewsBlockSecondSliceDefaultPrimary {
   newsblockdescriptionsecond: prismic.KeyTextField;
 
   /**
-   * newsBlockVideoSecond field in *NewsBlockSecond → Default → Primary*
+   * newsBlockVideoIframeSecond field in *NewsBlockSecond → Default → Primary*
    *
    * - **Field Type**: Text
    * - **Placeholder**: Renseigner l'URL de votre news numéro 2

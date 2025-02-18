@@ -1,25 +1,31 @@
 import { FC } from "react";
 import { Content } from "@prismicio/client";
-import { SliceComponentProps } from "@prismicio/react";
 
-/**
- * Props for `NewsBlockFirst`.
- */
-export type NewsBlockFirstProps =
-	SliceComponentProps<Content.NewsBlockFirstSlice>;
+type HomePageNewsProps = {
+	newsBlockFirstSlice: Content.NewsBlockFirstSlice;
+	newsBlockSecondSlice: Content.NewsBlockSecondSlice;
+};
 
-/**
- * Component for "NewsBlockFirst" Slices.
- */
-const NewsBlockFirst: FC<NewsBlockFirstProps> = ({ slice }) => {
+const HomePageNews: FC<HomePageNewsProps> = ({
+	newsBlockFirstSlice,
+	newsBlockSecondSlice,
+}) => {
 	return (
-		<section
-			data-slice-type={slice.slice_type}
-			data-slice-variation={slice.variation}
-		>
-			{slice.primary.newsblocktitlefirst}
+		<section>
+			{newsBlockFirstSlice && (
+				<div>
+					<h2>{newsBlockFirstSlice.primary.newsblocktitlefirst}</h2>
+					{/* Affichez les autres champs de la slice news_block_first ici */}
+				</div>
+			)}
+			{newsBlockSecondSlice && (
+				<div>
+					<h2>{newsBlockSecondSlice.primary.newsblocktitlesecond}</h2>
+					{/* Affichez les autres champs de la slice news_block_second ici */}
+				</div>
+			)}
 		</section>
 	);
 };
 
-export default NewsBlockFirst;
+export default HomePageNews;

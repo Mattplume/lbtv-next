@@ -29,7 +29,7 @@
         "newsblockvideosecond": {
           "type": "Text",
           "config": {
-            "label": "newsBlockVideoSecond",
+            "label": "newsBlockVideoIframeSecond",
             "placeholder": "Renseigner l'URL de votre news numéro 2"
           }
         }

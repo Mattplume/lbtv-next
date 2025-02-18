@@ -16,9 +16,7 @@ const NewsBlockSecond: FC<NewsBlockSecondProps> = ({ slice }) => {
 		<section
 			data-slice-type={slice.slice_type}
 			data-slice-variation={slice.variation}
-		>
-			{slice.primary.newsblocktitlesecond}
-		</section>
+		></section>
 	);
 };
 

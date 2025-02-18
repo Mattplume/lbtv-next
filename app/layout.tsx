@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { DM_Sans } from "next/font/google";
-import Header from "@/components/Header";
-import MainContainer from "@/components/MainContainer";
+import MainContainer from "@/app/components/MainContainer";
+import ResponsiveHeader from "./components/ResponsiveHeader";
 import "./globals.css";
 
 const DMSans = DM_Sans({
@@ -22,7 +22,7 @@ export default function RootLayout({
 	return (
 		<html lang="fr">
 			<body className={DMSans.className}>
-				<Header />
+				<ResponsiveHeader />
 				<MainContainer>{children}</MainContainer>
 			</body>
 		</html>
