@@ -15,18 +15,19 @@ const MobileHeader: React.FC = () => {
 		<>
 			<header className="fixed bg-darkColor left-0 right-0 z-50 w-100 flex flex-col justify-center p-[20px]">
 				<div className="flex flex-row justify-between items-center">
+					<div className="nav-empty w-[25%]"></div>
 					<Link href="/">
 						<ImageComponent
 							src="/logo.png"
 							alt="Logo de La Baule TV"
-							width={100}
+							width={80}
 							height={30}
 						/>
 					</Link>
 
 					<div
 						id="menutoggle"
-						className="flex flex-col justify-center gap-2"
+						className="flex flex-col justify-center items-end gap-2 w-[25%]"
 						onClick={toggleMenu}
 					>
 						<div
@@ -42,7 +43,10 @@ const MobileHeader: React.FC = () => {
 					</div>
 				</div>
 				{isMenuOpen && (
-					<nav className="pt-[40] w-full bg-darkPrimary transition-transform duration-300 transform translate-y-0">
+					<nav
+						className={`pt-[40] pl-6 w-full  transition-transform duration-300 transform h-screen origin-top overflow-hidden 
+						${isMenuOpen ? "mt-0" : "mt-[-100%]"}`}
+					>
 						<ul className="flex flex-col items-center py-4">
 							<li className="w-full mt-3 mb-3">
 								<Link
@@ -50,7 +54,7 @@ const MobileHeader: React.FC = () => {
 									href="/"
 									onClick={() => setIsMenuOpen(false)}
 								>
-									<span className="text-white">Home</span>
+									<span className="text-white text-xl">🏠 Accueil</span>
 								</Link>
 							</li>
 							<li className="w-full mt-3 mb-3">
@@ -58,7 +62,7 @@ const MobileHeader: React.FC = () => {
 									href=""
 									className="flex flex-row w-full justify-between items-center"
 								>
-									<span className="text-white">News</span>
+									<span className="text-white text-xl">📆 News</span>
 								</Link>
 							</li>
 							<li className="w-full mt-3 mb-3">
@@ -68,7 +72,7 @@ const MobileHeader: React.FC = () => {
 									onClick={() => setIsMenuOpen(false)}
 								>
 									{" "}
-									<span className="text-white">Émissions</span>
+									<span className="text-white text-xl">🎥 Émissions</span>
 								</Link>
 							</li>
 							<li className="w-full mt-3 mb-3">
@@ -78,7 +82,7 @@ const MobileHeader: React.FC = () => {
 									onClick={() => setIsMenuOpen(false)}
 								>
 									{" "}
-									<span className="text-white">Dery Mag</span>
+									<span className="text-white text-xl">🗞️ Derby Mag</span>
 								</Link>
 							</li>
 						</ul>

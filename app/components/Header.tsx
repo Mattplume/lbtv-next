@@ -6,10 +6,10 @@ const Header: React.FC = () => {
 		"flex h-full items-center text-navLink hover:text-navLinkHover transition-colors duration-300";
 
 	return (
-		<header className="fixed top-0 z-[1000] h-[65px] bg-darkColor w-full flex align-middle">
+		<header className="fixed top-0 z-[1000] h-[70px] bg-darkColor w-full flex align-middle">
 			<div className="header-inner flex justify-between max-w-[1280px] mx-auto w-full md:max-w-[90%]">
-				<nav className="flex justify-start align-middle h-[65px]">
-					<div className="mr-10">
+				<nav className="flex justify-start align-middle h-[70px]">
+					<div className="mr-20">
 						<Link
 							href="/"
 							aria-label="homepage logo"
@@ -24,12 +24,12 @@ const Header: React.FC = () => {
 						</Link>
 					</div>
 					<ul className="flex justify-end align-middle">
-						<li className="flex h-full mr-6">
+						<li className="flex h-full mr-8">
 							<Link href="/" aria-label="homepage" className={navLinkClasses}>
 								<span>🏠 Accueil</span>
 							</Link>
 						</li>
-						<li className="mr-6">
+						<li className="mr-8">
 							{" "}
 							<Link
 								href="#"
@@ -39,7 +39,7 @@ const Header: React.FC = () => {
 								<span className={navLinkClasses}>📆 News</span>
 							</Link>
 						</li>
-						<li className="mr-6">
+						<li className="mr-8">
 							{" "}
 							<Link
 								href="#"
