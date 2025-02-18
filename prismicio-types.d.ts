@@ -106,16 +106,6 @@ export interface NewsBlockFirstSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   newsblockvideoiframe: prismic.KeyTextField;
-
-  /**
-   * videoIframe field in *NewsBlockFirst → Default → Primary*
-   *
-   * - **Field Type**: Embed
-   * - **Placeholder**: *None*
-   * - **API ID Path**: news_block_first.default.primary.videoiframe
-   * - **Documentation**: https://prismic.io/docs/field#embed
-   */
-  videoiframe: prismic.EmbedField;
 }
 
 /**

@@ -32,13 +32,6 @@
             "label": "newsBlockVideoIframe",
             "placeholder": "Renseigner le code d'intégration de votre vidéo"
           }
-        },
-        "videoiframe": {
-          "type": "Embed",
-          "config": {
-            "label": "videoIframe",
-            "placeholder": ""
-          }
         }
       },
       "items": {}

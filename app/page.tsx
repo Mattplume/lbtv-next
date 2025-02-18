@@ -1,10 +1,11 @@
 import { Metadata } from "next";
 import { isFilled, asImageSrc } from "@prismicio/client";
 import { createClient } from "@/prismicio";
-import HomePageNews from "@/components/HomePageNews";
+import HomePageNews from "@/app/components/HomePageNews";
 import { SliceZone } from "@prismicio/react";
 import { components } from "@/slices";
 import { Content } from "@prismicio/client";
+import Feed from "./components/FacebookFeed";
 
 export default async function Page() {
 	const client = createClient();
@@ -33,6 +34,7 @@ export default async function Page() {
 				newsBlockFirstSlice={newsBlockFirstSlice}
 				newsBlockSecondSlice={newsBlockSecondSlice}
 			/>
+			<Feed />
 		</>
 	);
 }
