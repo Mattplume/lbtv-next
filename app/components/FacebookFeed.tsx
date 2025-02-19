@@ -6,12 +6,12 @@ type FeedProps = {
 
 const Feed: FC<FeedProps> = ({ src }) => {
 	return (
-		<div className="feed-card bg-white p-6 rounded-xl shadow-md">
+		<div className="feed-card bg-white p-6 rounded-xl shadow-md max-h-fit">
 			<iframe
 				src={src}
 				width="350"
-				height="500"
-				style={{ border: "none", overflow: "hidden" }}
+				height="480"
+				style={{ border: "none", overflow: "hidden", maxHeight: "500px" }}
 				frameBorder="0"
 				allowFullScreen={true}
 				allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"

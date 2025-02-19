@@ -17,14 +17,16 @@ const HomePageNewsCard: FC<HomePageNewsCardProps> = ({
 			<div className="p-4">
 				<h5 className="text-lg mb-2">{title}</h5>
 			</div>
-			<div
-				dangerouslySetInnerHTML={{
-					__html: iframeUrl,
-				}}
-				className="w-full h-full"
-			/>
-			<div>
-				<p className="text-gray-600 p-4">{description}</p>
+			<div className="max-w-[700px]">
+				<div
+					dangerouslySetInnerHTML={{
+						__html: iframeUrl,
+					}}
+					className="iframe-block relative pt-[56.25%]"
+				/>
+			</div>
+			<div className="text-gray-600 p-4">
+				<p>{description}</p>
 			</div>
 		</div>
 	);
