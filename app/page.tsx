@@ -2,14 +2,16 @@ import { Metadata } from "next";
 import { isFilled, asImageSrc } from "@prismicio/client";
 import { createClient } from "@/prismicio";
 import HomePageNews from "@/app/components/HomePageNews";
-import { SliceZone } from "@prismicio/react";
-import { components } from "@/slices";
 import { Content } from "@prismicio/client";
 import Feed from "./components/FacebookFeed";
 
 export default async function Page() {
 	const client = createClient();
 	const page = await client.getSingle("homepage");
+	const lbtvSrc =
+		"https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Flabauletv&tabs=timeline&width=350&height=500&small_header=true&adapt_container_width=true&hide_cover=true&show_facepile=true";
+	const lbSrc =
+		"https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FpageLABAULE&tabs=timeline&width=350&height=500&small_header=true&adapt_container_width=true&hide_cover=true&show_facepile=true";
 
 	const newsBlockFirstSlice = page.data.slices.find(
 		(slice) => slice.slice_type === "news_block_first"
@@ -20,21 +22,19 @@ export default async function Page() {
 	) as Content.NewsBlockSecondSlice | undefined;
 
 	return (
-		<>
-			<SliceZone
-				slices={page.data.slices.filter(
-					(slice) =>
-						slice.slice_type !== "news_block_first" &&
-						slice.slice_type !== "news_block_second"
-				)}
-				components={components}
-			/>
+		<div className="flex justify-between max-w-[1280px] mx-auto w-full pt-[80px] pb-[100px]">
 			<HomePageNews
 				newsBlockFirstSlice={newsBlockFirstSlice!}
 				newsBlockSecondSlice={newsBlockSecondSlice!}
 			/>
-			<Feed />
-		</>
+			<div className="feed-container flex flex-col">
+				<h4>La Baule sur les réseaux</h4>
+				<div className="flex flex-col gap-[24px]">
+					<Feed src={lbtvSrc} />
+					<Feed src={lbSrc} />
+				</div>
+			</div>
+		</div>
 	);
 }
 

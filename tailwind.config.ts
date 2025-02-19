@@ -9,6 +9,9 @@ export default {
   ],
   theme: {
     extend: {
+      heading: {
+        h1 : "40px"
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",

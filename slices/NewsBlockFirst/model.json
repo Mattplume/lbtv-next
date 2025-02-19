@@ -32,6 +32,15 @@
             "label": "newsBlockVideoIframe",
             "placeholder": "Renseigner le code d'intégration de votre vidéo"
           }
+        },
+        "newsblocktitlefirstdemo": {
+          "type": "StructuredText",
+          "config": {
+            "label": "newsBlockTitleFirstDemo",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,em,image,embed,list-item,o-list-item,rtl"
+          }
         }
       },
       "items": {}
