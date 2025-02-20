@@ -45,7 +45,7 @@ const MobileHeader: React.FC = () => {
 			</header>
 			<nav
 				className={`fixed pt-[120px] pl-12 w-full bg-darkColor z-[5] transition-[margin-top] duration-500 transform h-screen
-						${isMenuOpen ? "mt-0 " : "mt-[-180%]"}`}
+						${isMenuOpen ? "mt-0 " : "mt-[-200%]"}`}
 			>
 				<ul className="flex flex-col items-center py-4">
 					<li className="w-full mb-3">
