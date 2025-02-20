@@ -106,6 +106,16 @@ export interface NewsBlockFirstSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   newsblockvideoiframe: prismic.KeyTextField;
+
+  /**
+   * newsBlockTitleFirstDemo field in *NewsBlockFirst → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: news_block_first.default.primary.newsblocktitlefirstdemo
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  newsblocktitlefirstdemo: prismic.RichTextField;
 }
 
 /**

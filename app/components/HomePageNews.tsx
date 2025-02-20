@@ -13,15 +13,20 @@ const HomePageNewsCard: FC<HomePageNewsCardProps> = ({
 	iframeUrl,
 }) => {
 	return (
-		<div className="bg-white shadow-md rounded-lg overflow-hidden">
+		<div className="bg-white shadow-md rounded-xl max-w-[700px] w-full max-h-max">
 			<div className="p-4">
-				<h3 className="text-lg font-bold mb-2">{title}</h3>
+				<h5 className="text-lg mb-2">{title}</h5>
+			</div>
+			<div className="max-w-[700px]">
 				<div
 					dangerouslySetInnerHTML={{
 						__html: iframeUrl,
 					}}
+					className="iframe-block relative pt-[56.25%]"
 				/>
-				<p className="text-gray-600">{description}</p>
+			</div>
+			<div className="text-gray-600 p-4">
+				<p>{description}</p>
 			</div>
 		</div>
 	);
@@ -37,23 +42,28 @@ const HomePageNews: FC<HomePageNewsProps> = ({
 	newsBlockSecondSlice,
 }) => {
 	return (
-		<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-			{newsBlockFirstSlice && (
-				<HomePageNewsCard
-					title={newsBlockFirstSlice.primary.newsblocktitlefirst ?? ""}
-					iframeUrl={newsBlockFirstSlice.primary.newsblockvideoiframe ?? ""}
-					description={
-						newsBlockFirstSlice.primary.newsblockdescriptionfirst ?? ""
-					}
-				/>
-			)}
-			{newsBlockSecondSlice && (
-				<HomePageNewsCard
-					title={newsBlockSecondSlice.primary.newsblocktitlesecond ?? ""}
-					iframeUrl={newsBlockSecondSlice.primary.newsblockvideosecond ?? ""}
-					description={newsBlockSecondSlice.primary.newsblocktitlesecond ?? ""}
-				/>
-			)}
+		<div className="home-news-container flex flex-col items-center">
+			<h1 className="text-darkColor text-left w-full">À la une</h1>
+			<div className="flex flex-col gap-[24px]">
+				{newsBlockFirstSlice && (
+					<HomePageNewsCard
+						title={newsBlockFirstSlice.primary.newsblocktitlefirst ?? ""}
+						iframeUrl={newsBlockFirstSlice.primary.newsblockvideoiframe ?? ""}
+						description={
+							newsBlockFirstSlice.primary.newsblockdescriptionfirst ?? ""
+						}
+					/>
+				)}
+				{newsBlockSecondSlice && (
+					<HomePageNewsCard
+						title={newsBlockSecondSlice.primary.newsblocktitlesecond ?? ""}
+						iframeUrl={newsBlockSecondSlice.primary.newsblockvideosecond ?? ""}
+						description={
+							newsBlockSecondSlice.primary.newsblocktitlesecond ?? ""
+						}
+					/>
+				)}
+			</div>
 		</div>
 	);
 };
