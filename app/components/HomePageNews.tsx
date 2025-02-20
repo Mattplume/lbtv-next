@@ -13,11 +13,11 @@ const HomePageNewsCard: FC<HomePageNewsCardProps> = ({
 	iframeUrl,
 }) => {
 	return (
-		<div className="bg-white shadow-md rounded-xl max-w-[700px] w-full max-h-max">
-			<div className="p-4">
+		<div className="card bg-white flex flex-col shadow-md rounded-xl max-w-[700px] w-full max-h-max">
+			<div className="p-4 order-2 lg:order-1">
 				<h5 className="text-lg mb-2">{title}</h5>
 			</div>
-			<div className="max-w-[700px]">
+			<div className="max-w-[700px] order-1 lg:order-2">
 				<div
 					dangerouslySetInnerHTML={{
 						__html: iframeUrl,
@@ -25,7 +25,7 @@ const HomePageNewsCard: FC<HomePageNewsCardProps> = ({
 					className="iframe-block relative pt-[56.25%]"
 				/>
 			</div>
-			<div className="text-gray-600 p-4">
+			<div className="text-gray-600 p-4 order-3">
 				<p>{description}</p>
 			</div>
 		</div>
@@ -42,8 +42,10 @@ const HomePageNews: FC<HomePageNewsProps> = ({
 	newsBlockSecondSlice,
 }) => {
 	return (
-		<div className="home-news-container flex flex-col items-center">
-			<h1 className="text-darkColor text-left w-full">À la une</h1>
+		<div className="home-news-container w-full flex flex-col items-center lg:max-w-[50%] xl:max-w-[700px]">
+			<h1 className="hidden lg:block text-darkColor text-left w-full">
+				À la une
+			</h1>
 			<div className="flex flex-col gap-[24px]">
 				{newsBlockFirstSlice && (
 					<HomePageNewsCard
@@ -59,7 +61,7 @@ const HomePageNews: FC<HomePageNewsProps> = ({
 						title={newsBlockSecondSlice.primary.newsblocktitlesecond ?? ""}
 						iframeUrl={newsBlockSecondSlice.primary.newsblockvideosecond ?? ""}
 						description={
-							newsBlockSecondSlice.primary.newsblocktitlesecond ?? ""
+							newsBlockSecondSlice.primary.newsblockdescriptionsecond ?? ""
 						}
 					/>
 				)}
