@@ -8,7 +8,7 @@ const Footer: React.FC = () => {
 		<footer className="p-8 bg-darkColor">
 			<div className="inner footer">
 				<div className="socials">
-					<ul className="flex justify-start align-middle h-full">
+					<ul className="flex justify-center align-middle h-full">
 						<li className="mr-4">
 							<Link
 								href="https://www.facebook.com/labauletv"

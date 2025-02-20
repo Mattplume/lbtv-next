@@ -32,7 +32,7 @@ const Header: React.FC = () => {
 						<li className="mr-8">
 							{" "}
 							<Link
-								href="#"
+								href="/news"
 								aria-label="news"
 								className="flex h-full items-center"
 							>
