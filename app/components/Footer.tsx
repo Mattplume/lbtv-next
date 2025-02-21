@@ -1,68 +1,14 @@
 import Link from "next/link";
-import ImageComponent from "./ImageComponent";
 
-const Header: React.FC = () => {
-	const navLinkClasses =
-		"flex h-full items-center text-navLink hover:text-navLinkHover transition-colors duration-300";
+const navLinkClasses =
+	"flex h-full items-center text-navLink hover:text-navLinkHover transition-colors duration-300";
 
+const Footer: React.FC = () => {
 	return (
-		<header className="fixed top-0 z-[1000] h-[70px] bg-darkColor w-full flex align-middle">
-			<div className="header-inner flex justify-between max-w-[1280px] mx-auto w-full md:max-w-[90%]">
-				<nav className="flex justify-start align-middle h-[70px]">
-					<div className="mr-20">
-						<Link
-							href="/"
-							aria-label="homepage logo"
-							className="flex h-full items-center"
-						>
-							<ImageComponent
-								src="/logo.png"
-								alt="Logo de La Baule TV"
-								width={130}
-								height={35}
-							/>
-						</Link>
-					</div>
-					<ul className="flex justify-end align-middle">
-						<li className="flex h-full mr-8">
-							<Link href="/" aria-label="homepage" className={navLinkClasses}>
-								<span>🏠 Accueil</span>
-							</Link>
-						</li>
-						<li className="mr-8">
-							{" "}
-							<Link
-								href="/news"
-								aria-label="news"
-								className="flex h-full items-center"
-							>
-								<span className={navLinkClasses}>📆 News</span>
-							</Link>
-						</li>
-						<li className="mr-8">
-							{" "}
-							<Link
-								href="#"
-								aria-label="émissions"
-								className="flex h-full items-center"
-							>
-								<span className={navLinkClasses}>📺 Émissions</span>
-							</Link>
-						</li>
-						<li>
-							{" "}
-							<Link
-								href="#"
-								aria-label="derby-magazine"
-								className="flex h-full items-center"
-							>
-								<span className={navLinkClasses}>🗞️ Derby Mag</span>
-							</Link>
-						</li>
-					</ul>
-				</nav>
+		<footer className="p-8 bg-darkColor">
+			<div className="inner footer">
 				<div className="socials">
-					<ul className="flex justify-start align-middle h-full">
+					<ul className="flex justify-center align-middle h-full">
 						<li className="mr-4">
 							<Link
 								href="https://www.facebook.com/labauletv"
@@ -151,8 +97,8 @@ const Header: React.FC = () => {
 					</ul>
 				</div>
 			</div>
-		</header>
+		</footer>
 	);
 };
 
-export default Header;
+export default Footer;
