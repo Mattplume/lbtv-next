@@ -1,35 +1,44 @@
-// app/components/VideoCard.tsx
-
 import Link from "next/link";
 import Image from "next/image";
 import { FC } from "react";
 import { VideoNews } from "@/app/types";
+import { formatVideoDuration } from "../utils";
 
 interface VideoCardProps {
 	video: VideoNews;
 }
 
 const VideoCard: FC<VideoCardProps> = ({ video }) => {
-	console.log("VIDEO", video);
+	const viewsInK = Math.round(video.views / 1000);
+	const videoLength = formatVideoDuration(video.length);
 	return (
 		<Link
 			href={`/news/${video.id}`}
 			className="block bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow"
 		>
-			{/* Conteneur pour conserver le ratio 16:9 */}
-			<div className="relative w-full" style={{ paddingTop: "56.25%" }}>
+			{/* Conteneur pour l'image en ratio 16:9 */}
+			<div className="relative w-full aspect-video">
 				<Image
-					src={video.picture}
-					alt={video.title}
+					src={video.thumbnails.data[0].uri}
+					alt="Aperçu vidéo"
 					fill
-					className="object-cover"
+					className="object-cover relative"
+					sizes="100vw"
+					priority
 				/>
+				<span className="absolute z-10 text-gray-300 text-xs bottom-1 right-1 bg-slate-700 bg-opacity-60 py-0.5 px-1 rounded-sm">
+					{videoLength}
+				</span>
 			</div>
+
+			{/* Contenu texte */}
 			<div className="p-4">
-				<h2 className="text-xl font-semibold">{video.title}</h2>
 				{video.description && (
-					<p className="text-gray-600 mt-2 text-sm">{video.description}</p>
+					<p className="text-gray-600 text-sm">
+						{video.description.slice(0, 110).concat("...")}
+					</p>
 				)}
+				<span className="text-gray-800 text-xs">{viewsInK}k vues</span>
 			</div>
 		</Link>
 	);
