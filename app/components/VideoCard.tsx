@@ -13,7 +13,16 @@ const VideoCard: FC<VideoCardProps> = ({ video }) => {
 	const videoLength = formatVideoDuration(video.length);
 	return (
 		<Link
-			href={`/news/${video.id}`}
+			href={{
+				pathname: `/news/${video.id}`,
+				query: {
+					description: video.description,
+					length: video.length,
+					embed_html: video.embed_html,
+					views: video.views,
+					created_time: video.created_time,
+				},
+			}}
 			className="block bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow"
 		>
 			{/* Conteneur pour l'image en ratio 16:9 */}

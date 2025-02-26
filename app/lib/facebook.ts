@@ -48,7 +48,7 @@ async function getFacebookToken(): Promise<string> {
  */
 export async function getFacebookVideos(playlistId: string) {
   const token = await getFacebookToken();
-  const url = `${FACEBOOK_API_BASE}/${playlistId}/videos?fields=id,description,length,embed_html,picture,thumbnails,views&access_token=${token}`;
+  const url = `${FACEBOOK_API_BASE}/${playlistId}/videos?fields=id,description,length,embed_html,thumbnails,created_time,views&access_token=${token}`;
 
   const res = await fetch(url);
   if (!res.ok) {

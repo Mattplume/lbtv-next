@@ -1,10 +1,11 @@
 export interface VideoNews {
   id: string;
-  picture: string;
   description: string;
   thumbnails: VideoThumbail;
   views: number;
   length: number;
+  created_time: string;
+  embed_html: string;
 }
 
  type VideoThumbail = {

@@ -12,7 +12,6 @@ const Feed: FC<FeedProps> = ({ src }) => {
 				width="350"
 				height="480"
 				style={{ border: "none", overflow: "hidden", maxHeight: "500px" }}
-				frameBorder="0"
 				allowFullScreen={true}
 				allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
 			></iframe>
