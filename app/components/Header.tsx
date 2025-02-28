@@ -53,7 +53,7 @@ const Header: React.FC = () => {
 						<li className="nav-link mr-8 relative">
 							{" "}
 							<Link
-								href="#"
+								href="/shows"
 								aria-label="émissions"
 								className={
 									pathname === "/shows"
