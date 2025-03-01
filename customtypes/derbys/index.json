@@ -1,7 +1,7 @@
 {
   "format": "page",
   "id": "derbys",
-  "label": "derbys",
+  "label": "derbys-magazine",
   "repeatable": false,
   "status": true,
   "json": {
@@ -11,7 +11,7 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
-            "derby_magazine": {
+            "magazine": {
               "type": "SharedSlice"
             }
           }

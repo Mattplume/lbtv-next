@@ -59,7 +59,7 @@ const MobileHeader: React.FC = () => {
 					</li>
 					<li className="w-full mb-3">
 						<Link
-							href=""
+							href="/news"
 							className="flex flex-row w-full justify-between items-center"
 						>
 							<span className="text-white text-2xl">📆 News</span>
@@ -68,7 +68,7 @@ const MobileHeader: React.FC = () => {
 					<li className="w-full mb-3">
 						<Link
 							className="flex flex-row justify-between items-center"
-							href="/work-experience"
+							href="/shows"
 							onClick={() => setIsMenuOpen(false)}
 						>
 							{" "}
@@ -78,7 +78,7 @@ const MobileHeader: React.FC = () => {
 					<li className="w-full mb-3">
 						<Link
 							className="flex flex-row justify-between items-center"
-							href="/contact"
+							href="/derbys"
 							onClick={() => setIsMenuOpen(false)}
 						>
 							{" "}

@@ -4,14 +4,14 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
-type DerbysDocumentDataSlicesSlice = DerbyMagazineSlice;
+type DerbysDocumentDataSlicesSlice = MagazineSlice;
 
 /**
- * Content for derbys documents
+ * Content for derbys-magazine documents
  */
 interface DerbysDocumentData {
   /**
-   * Slice Zone field in *derbys*
+   * Slice Zone field in *derbys-magazine*
    *
    * - **Field Type**: Slice Zone
    * - **Placeholder**: *None*
@@ -20,7 +20,7 @@ interface DerbysDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#slices
    */
   slices: prismic.SliceZone<DerbysDocumentDataSlicesSlice> /**
-   * Meta Title field in *derbys*
+   * Meta Title field in *derbys-magazine*
    *
    * - **Field Type**: Text
    * - **Placeholder**: A title of the page used for social media and search engines
@@ -31,7 +31,7 @@ interface DerbysDocumentData {
   meta_title: prismic.KeyTextField;
 
   /**
-   * Meta Description field in *derbys*
+   * Meta Description field in *derbys-magazine*
    *
    * - **Field Type**: Text
    * - **Placeholder**: A brief summary of the page
@@ -42,7 +42,7 @@ interface DerbysDocumentData {
   meta_description: prismic.KeyTextField;
 
   /**
-   * Meta Image field in *derbys*
+   * Meta Image field in *derbys-magazine*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
@@ -54,7 +54,7 @@ interface DerbysDocumentData {
 }
 
 /**
- * derbys document from Prismic
+ * derbys-magazine document from Prismic
  *
  * - **API ID**: `derbys`
  * - **Repeatable**: `false`
@@ -139,58 +139,58 @@ export type HomepageDocument<Lang extends string = string> =
 export type AllDocumentTypes = DerbysDocument | HomepageDocument;
 
 /**
- * Primary content in *DerbyMagazine → Default → Primary*
+ * Primary content in *Magazine → Default → Primary*
  */
-export interface DerbyMagazineSliceDefaultPrimary {
+export interface MagazineSliceDefaultPrimary {
   /**
-   * Page de couverture field in *DerbyMagazine → Default → Primary*
+   * Poster field in *Magazine → Default → Primary*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: derby_magazine.default.primary.page_de_couverture
+   * - **API ID Path**: magazine.default.primary.poster
    * - **Documentation**: https://prismic.io/docs/field#image
    */
-  page_de_couverture: prismic.ImageField<never>;
+  poster: prismic.ImageField<never>;
 
   /**
-   * Lien du magazine field in *DerbyMagazine → Default → Primary*
+   * MagazineURL field in *Magazine → Default → Primary*
    *
    * - **Field Type**: Text
-   * - **Placeholder**: Places l'URL du magazine en ligne
-   * - **API ID Path**: derby_magazine.default.primary.lien_du_magazine
+   * - **Placeholder**: Renseigner l'URL du magazine
+   * - **API ID Path**: magazine.default.primary.magazineurl
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
-  lien_du_magazine: prismic.KeyTextField;
+  magazineurl: prismic.KeyTextField;
 }
 
 /**
- * Default variation for DerbyMagazine Slice
+ * Default variation for Magazine Slice
  *
  * - **API ID**: `default`
  * - **Description**: Default
  * - **Documentation**: https://prismic.io/docs/slice
  */
-export type DerbyMagazineSliceDefault = prismic.SharedSliceVariation<
+export type MagazineSliceDefault = prismic.SharedSliceVariation<
   "default",
-  Simplify<DerbyMagazineSliceDefaultPrimary>,
+  Simplify<MagazineSliceDefaultPrimary>,
   never
 >;
 
 /**
- * Slice variation for *DerbyMagazine*
+ * Slice variation for *Magazine*
  */
-type DerbyMagazineSliceVariation = DerbyMagazineSliceDefault;
+type MagazineSliceVariation = MagazineSliceDefault;
 
 /**
- * DerbyMagazine Shared Slice
+ * Magazine Shared Slice
  *
- * - **API ID**: `derby_magazine`
- * - **Description**: DerbyMagazine
+ * - **API ID**: `magazine`
+ * - **Description**: Magazine
  * - **Documentation**: https://prismic.io/docs/slice
  */
-export type DerbyMagazineSlice = prismic.SharedSlice<
-  "derby_magazine",
-  DerbyMagazineSliceVariation
+export type MagazineSlice = prismic.SharedSlice<
+  "magazine",
+  MagazineSliceVariation
 >;
 
 /**
@@ -361,10 +361,10 @@ declare module "@prismicio/client" {
       HomepageDocumentData,
       HomepageDocumentDataSlicesSlice,
       AllDocumentTypes,
-      DerbyMagazineSlice,
-      DerbyMagazineSliceDefaultPrimary,
-      DerbyMagazineSliceVariation,
-      DerbyMagazineSliceDefault,
+      MagazineSlice,
+      MagazineSliceDefaultPrimary,
+      MagazineSliceVariation,
+      MagazineSliceDefault,
       NewsBlockFirstSlice,
       NewsBlockFirstSliceDefaultPrimary,
       NewsBlockFirstSliceVariation,

@@ -12,6 +12,7 @@ export default async function NewsPage({
 		"1508652705876539",
 		searchParams?.after || ""
 	);
+	console.log("DATA", data);
 	const initialVideos = data.data;
 	const initialNextCursor = data.paging?.cursors?.after || null;
 
