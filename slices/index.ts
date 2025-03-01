@@ -3,6 +3,7 @@
 import dynamic from "next/dynamic";
 
 export const components = {
+  derby_magazine: dynamic(() => import("./DerbyMagazine")),
   news_block_first: dynamic(() => import("./NewsBlockFirst")),
   news_block_second: dynamic(() => import("./NewsBlockSecond")),
 };

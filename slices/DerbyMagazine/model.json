@@ -1,0 +1,34 @@
+{
+  "id": "derby_magazine",
+  "type": "SharedSlice",
+  "name": "DerbyMagazine",
+  "description": "DerbyMagazine",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "page_de_couverture": {
+          "type": "Image",
+          "config": {
+            "label": "Page de couverture",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "lien_du_magazine": {
+          "type": "Text",
+          "config": {
+            "label": "Lien du magazine",
+            "placeholder": "Places l'URL du magazine en ligne"
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

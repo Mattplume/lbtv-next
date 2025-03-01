@@ -4,6 +4,71 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
+type DerbysDocumentDataSlicesSlice = DerbyMagazineSlice;
+
+/**
+ * Content for derbys documents
+ */
+interface DerbysDocumentData {
+  /**
+   * Slice Zone field in *derbys*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: derbys.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<DerbysDocumentDataSlicesSlice> /**
+   * Meta Title field in *derbys*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: derbys.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *derbys*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: derbys.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *derbys*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: derbys.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * derbys document from Prismic
+ *
+ * - **API ID**: `derbys`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type DerbysDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<DerbysDocumentData>,
+    "derbys",
+    Lang
+  >;
+
 type HomepageDocumentDataSlicesSlice =
   | NewsBlockSecondSlice
   | NewsBlockFirstSlice;
@@ -71,7 +136,62 @@ export type HomepageDocument<Lang extends string = string> =
     Lang
   >;
 
-export type AllDocumentTypes = HomepageDocument;
+export type AllDocumentTypes = DerbysDocument | HomepageDocument;
+
+/**
+ * Primary content in *DerbyMagazine → Default → Primary*
+ */
+export interface DerbyMagazineSliceDefaultPrimary {
+  /**
+   * Page de couverture field in *DerbyMagazine → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: derby_magazine.default.primary.page_de_couverture
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  page_de_couverture: prismic.ImageField<never>;
+
+  /**
+   * Lien du magazine field in *DerbyMagazine → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Places l'URL du magazine en ligne
+   * - **API ID Path**: derby_magazine.default.primary.lien_du_magazine
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  lien_du_magazine: prismic.KeyTextField;
+}
+
+/**
+ * Default variation for DerbyMagazine Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type DerbyMagazineSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<DerbyMagazineSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *DerbyMagazine*
+ */
+type DerbyMagazineSliceVariation = DerbyMagazineSliceDefault;
+
+/**
+ * DerbyMagazine Shared Slice
+ *
+ * - **API ID**: `derby_magazine`
+ * - **Description**: DerbyMagazine
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type DerbyMagazineSlice = prismic.SharedSlice<
+  "derby_magazine",
+  DerbyMagazineSliceVariation
+>;
 
 /**
  * Primary content in *NewsBlockFirst → Default → Primary*
@@ -234,10 +354,17 @@ declare module "@prismicio/client" {
 
   namespace Content {
     export type {
+      DerbysDocument,
+      DerbysDocumentData,
+      DerbysDocumentDataSlicesSlice,
       HomepageDocument,
       HomepageDocumentData,
       HomepageDocumentDataSlicesSlice,
       AllDocumentTypes,
+      DerbyMagazineSlice,
+      DerbyMagazineSliceDefaultPrimary,
+      DerbyMagazineSliceVariation,
+      DerbyMagazineSliceDefault,
       NewsBlockFirstSlice,
       NewsBlockFirstSliceDefaultPrimary,
       NewsBlockFirstSliceVariation,
