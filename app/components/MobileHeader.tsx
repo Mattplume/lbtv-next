@@ -13,7 +13,7 @@ const MobileHeader: React.FC = () => {
 
 	return (
 		<>
-			<header className="fixed bg-darkColor top-0 left-0 right-0 w-100 flex flex-col justify-center px-[20px] h-[70px] z-[6]">
+			<header className="fixed bg-darkColor top-0 left-0 right-0 w-100 flex flex-col justify-center px-[20px] h-[70px] z-[1000]">
 				<div className="flex flex-row justify-between items-center h-full">
 					<div className="nav-empty w-[25%]"></div>
 					<Link href="/" className="h-full flex items-center">

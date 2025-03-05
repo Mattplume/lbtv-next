@@ -1,4 +1,5 @@
 import { formatVideoDuration } from "@/app/utils";
+import VideoHeader from "@/app/components/VideoHeader";
 
 export default function NewsPage({
 	params,
@@ -19,6 +20,7 @@ export default function NewsPage({
 	return (
 		<div className="news-id-page fixed inset-0 z-[1000] flex flex-col lg:flex-row bg-white">
 			{/* Bloc vidéo : s'adapte à l'écran avec conservation du ratio */}
+			<VideoHeader />
 			<div className="relative w-full lg:w-[80%] flex justify-center items-center">
 				<div className="relative h-full w-full max-w-[1280px]">
 					<div className="w-full h-0 pb-[56.25%] relative">

@@ -13,6 +13,7 @@ export default async function NewsPage({
 		searchParams?.after || ""
 	);
 	const initialVideos = data.data;
+	console.log("initialVideos", initialVideos);
 	const initialNextCursor = data.paging?.cursors?.after || null;
 
 	return (
