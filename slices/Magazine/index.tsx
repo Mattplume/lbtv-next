@@ -1,24 +1,27 @@
+import Link from "next/link";
+import Image from "next/image";
 import { FC } from "react";
 import { Content } from "@prismicio/client";
-import { SliceComponentProps } from "@prismicio/react";
 
-/**
- * Props for `Magazine`.
- */
-export type MagazineProps = SliceComponentProps<Content.MagazineSlice>;
+interface MagazineSliceProps {
+	slice: Content.MagazineSlice;
+}
 
-/**
- * Component for "Magazine" Slices.
- */
-const Magazine: FC<MagazineProps> = ({ slice }) => {
-  return (
-    <section
-      data-slice-type={slice.slice_type}
-      data-slice-variation={slice.variation}
-    >
-      Placeholder component for magazine (variation: {slice.variation}) Slices
-    </section>
-  );
+const Magazine: FC<MagazineSliceProps> = ({ slice }) => {
+	const { poster, magazine_url } = slice.primary;
+	return (
+		<Link href={magazine_url} className="block">
+			<div className="relative h-0 pb-[60%] overflow-hidden rounded-lg shadow-md hover:shadow-xl transition">
+				<Image
+					src={poster.url}
+					alt={poster.alt || "Poster du magazine"}
+					fill
+					className="object-cover"
+					sizes="(max-width: 768px) 100vw, 50vw"
+				/>
+			</div>
+		</Link>
+	);
 };
 
 export default Magazine;
