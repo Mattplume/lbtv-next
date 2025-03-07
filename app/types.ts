@@ -16,15 +16,7 @@ type VideoData = {
   uri: string;
 }
  
-// app/types.ts
-// export interface DerbysMagazineSlice {
-//   slice_type: "derbys_magazine_slice";
-//   slice_label: string | null;
-//   primary: {
-//     poster: {
-//       url: string;
-//       alt?: string;
-//     };
-//     magazineUrl: string;
-//   };
-// }
+export interface PageHeaderInfos {
+  title: string;
+  description: string;
+}

@@ -60,6 +60,7 @@ const MobileHeader: React.FC = () => {
 					<li className="w-full mb-3">
 						<Link
 							href="/news"
+							onClick={() => setIsMenuOpen(false)}
 							className="flex flex-row w-full justify-between items-center"
 						>
 							<span className="text-white text-2xl">📆 News</span>

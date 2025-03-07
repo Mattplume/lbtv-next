@@ -22,7 +22,7 @@ export default async function Page() {
 	) as Content.NewsBlockSecondSlice | undefined;
 
 	return (
-		<div className="w-full flex justify-between lg:max-w-[90%] lg:pt-[64px] xl:max-w-[1280px] mx-auto pb-[100px]">
+		<div className="w-full flex justify-between lg:max-w-[90%] lg:pt-[64px] xl:max-w-[1280px] mx-auto md:pb-[80px]">
 			<HomePageNews
 				newsBlockFirstSlice={newsBlockFirstSlice!}
 				newsBlockSecondSlice={newsBlockSecondSlice!}

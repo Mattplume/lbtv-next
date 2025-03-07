@@ -17,22 +17,22 @@ const DerbyMagazineCard: FC<DerbyMagazineCardProps> = ({
 	magazineUrl,
 }) => {
 	return (
-		<Link
-			href={magazineUrl}
-			className="block"
-			target="blank"
-			rel="noopenner noreferer"
-		>
-			<div className="relative h-0 pb-[60%] overflow-hidden rounded-lg shadow-md hover:shadow-xl transition">
+		<div className="md:max-w-[400px] w-full max-w-[90%] rounded-lg shadow-md hover:shadow-xl transition">
+			<Link
+				href={magazineUrl}
+				className="flex items-center w-full"
+				target="blank"
+				rel="noopenner noreferer"
+			>
 				<Image
 					src={poster.url}
 					alt={poster.alt || "Poster du magazine"}
-					fill
-					className="object-cover"
-					sizes="(max-width: 768px) 100vw, 50vw"
+					width="1000"
+					height="700"
+					className="object-cover max-w-full rounded-lg"
 				/>
-			</div>
-		</Link>
+			</Link>
+		</div>
 	);
 };
 
