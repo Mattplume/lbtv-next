@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getFacebookVideos } from "@/app/lib/facebook";
 
-export async function GET(req: NextRequest, { params }: { params: { playlistId: string } }) {
-  const { playlistId } = params;
+export async function GET(req: NextRequest, context: { params: { playlistId: string } }) {
+  const { playlistId } = context.params;
   const { searchParams } = new URL(req.url);
   const afterCursor = searchParams.get("after") || "";
   
@@ -14,3 +14,4 @@ export async function GET(req: NextRequest, { params }: { params: { playlistId: 
     return NextResponse.json({ error: "Erreur lors de la récupération des vidéos" }, { status: 500 });
   }
 }
+
