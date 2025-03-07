@@ -1,7 +1,6 @@
 import { formatVideoDuration } from "@/app/utils";
 
 export default function NewsPage({
-	params,
 	searchParams,
 }: {
 	params: { newsId: string };

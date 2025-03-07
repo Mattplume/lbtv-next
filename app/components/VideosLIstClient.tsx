@@ -39,24 +39,30 @@ export default function VideosListClient({
 			}
 			const data = await res.json();
 			const newChunkCount = data.data.length;
-			// Ajoute les nouvelles vidéos à la liste existante.
+			// Ajoute les nouvelles vidéos à l'existant.
 			setVideos((prev) => [...prev, ...data.data]);
-			// Stocke le nombre d'éléments récupérés dans ce lot.
+			// Met à jour le nombre d'éléments récupérés dans ce lot.
 			setLastChunkCount(newChunkCount);
-			// Si le lot est inférieur à LIMIT, on considère qu'il n'y a plus de vidéos à charger.
+			// Si le lot contient moins de LIMIT vidéos, il n'y a plus de vidéos à charger.
 			if (newChunkCount < LIMIT) {
 				setNextCursor(null);
 			} else {
 				setNextCursor(data.paging?.cursors?.after || null);
 			}
-		} catch (err: any) {
-			setError(err.message || "Erreur inconnue");
+		} catch (err) {
+			let errMsg = "Erreur inconnue";
+			if (err instanceof Error) {
+				errMsg = err.message;
+			} else {
+				errMsg = String(err);
+			}
+			setError(errMsg);
 		} finally {
 			setLoadingMore(false);
 		}
 	};
 
-	// Le bouton "Voir plus" ne s'affiche que si nextCursor existe et que le dernier lot contient exactement LIMIT vidéos.
+	// Le bouton "Voir plus" ne s'affiche que si nextCursor existe et que le dernier lot contenait exactement LIMIT vidéos.
 	const showLoadMore = nextCursor !== null && lastChunkCount === LIMIT;
 
 	return (

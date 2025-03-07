@@ -2,7 +2,6 @@ import { formatVideoDuration } from "@/app/utils";
 import VideoHeader from "@/app/components/VideoHeader";
 
 export default function NewsPage({
-	params,
 	searchParams,
 }: {
 	params: { newsId: string };
