@@ -30,7 +30,6 @@ async function fetchLongLivedToken(): Promise<void> {
   
   cachedToken = data.access_token;
   tokenExpiration = Date.now() + data.expires_in * 1000; // Conversion en millisecondes
-  console.log("Nouveau token récupéré !");
 }
 
 /**
@@ -38,7 +37,6 @@ async function fetchLongLivedToken(): Promise<void> {
  */
 async function getFacebookToken(): Promise<string> {
   if (!isTokenValid()) {
-    console.log("Token expiré ou inexistant, renouvellement...");
     await fetchLongLivedToken();
   }
   return cachedToken!;

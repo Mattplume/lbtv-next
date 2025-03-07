@@ -2,23 +2,31 @@ import Link from "next/link";
 import Image from "next/image";
 import { FC } from "react";
 
-export interface DerbysMagazineCardProps {
-	poster: string;
-	alt: string;
+interface Poster {
+	url: string;
+	alt?: string;
+}
+
+interface DerbyMagazineCardProps {
+	poster: Poster;
 	magazineUrl: string;
 }
 
-const DerbysMagazineCard: FC<DerbysMagazineCardProps> = ({
+const DerbyMagazineCard: FC<DerbyMagazineCardProps> = ({
 	poster,
-	alt,
 	magazineUrl,
 }) => {
 	return (
-		<Link href={magazineUrl} className="block">
+		<Link
+			href={magazineUrl}
+			className="block"
+			target="blank"
+			rel="noopenner noreferer"
+		>
 			<div className="relative h-0 pb-[60%] overflow-hidden rounded-lg shadow-md hover:shadow-xl transition">
 				<Image
-					src={poster}
-					alt={alt || "Poster du magazine"}
+					src={poster.url}
+					alt={poster.alt || "Poster du magazine"}
 					fill
 					className="object-cover"
 					sizes="(max-width: 768px) 100vw, 50vw"
@@ -28,4 +36,4 @@ const DerbysMagazineCard: FC<DerbysMagazineCardProps> = ({
 	);
 };
 
-export default DerbysMagazineCard;
+export default DerbyMagazineCard;
