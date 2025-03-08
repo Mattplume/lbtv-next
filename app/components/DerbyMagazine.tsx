@@ -8,7 +8,7 @@ interface DerbyMagazineProps {
 
 const DerbyMagazine: FC<DerbyMagazineProps> = ({ magazineSlices }) => {
 	return (
-		<div className="flex flex-col md:flex-row justify-center gap-12 items-center">
+		<div className="flex flex-col md:flex-row justify-center gap-8 items-center">
 			{magazineSlices.map((slice) => (
 				<DerbyMagazineCard
 					key={slice.id}
