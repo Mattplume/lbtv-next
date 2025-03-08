@@ -19,20 +19,22 @@ export default function NewsPage() {
 	return (
 		<div className="news-id-page fixed inset-0 z-[1000] flex flex-col lg:flex-row bg-white">
 			{/* Bloc vidéo : s'adapte à l'écran avec conservation du ratio */}
-			<VideoHeader />
-			<div className="relative w-full lg:w-[80%] flex justify-center items-center">
-				<div className="relative h-full w-full max-w-[1280px]">
-					<div className="w-full h-0 pb-[56.25%] relative">
-						<div
-							className="iframe-block absolute inset-0 w-full h-full"
-							dangerouslySetInnerHTML={{ __html: embedHtml }}
-						/>
+			<div className="header-and-video-container w-full lg:w-[75%]">
+				<VideoHeader />
+				<div className="relative flex justify-center items-center">
+					<div className="relative h-full w-full max-w-[1280px]">
+						<div className="w-full h-0 pb-[56.25%] relative">
+							<div
+								className="iframe-block absolute inset-0 w-full h-full"
+								dangerouslySetInnerHTML={{ __html: embedHtml }}
+							/>
+						</div>
 					</div>
 				</div>
 			</div>
 
 			{/* Bloc infos : toujours visible, s'adapte en mobile */}
-			<div className="news-id-infos w-full lg:w-[20%] bg-white text-grey-600 px-4 pt-8 flex flex-col">
+			<div className="news-id-infos w-full lg:w-[25%] bg-white text-grey-600 px-4 pt-8 lg:pt-4 flex flex-col">
 				<p className="text-gray-500 text-sm mb-2">{description}</p>
 				<div className="text-gray-400 text-sm flex flex-col space-y-2">
 					<span>📅 {new Date(createdTime).toLocaleDateString()}</span>
