@@ -12,8 +12,11 @@ const DerbyMagazine: FC<DerbyMagazineProps> = ({ magazineSlices }) => {
 			{magazineSlices.map((slice) => (
 				<DerbyMagazineCard
 					key={slice.id}
-					poster={slice.primary.poster}
-					magazineUrl={slice.primary.magazineurl}
+					poster={{
+						url: slice.primary.poster.url || "",
+						alt: slice.primary.poster.alt || "Poster du magazine",
+					}}
+					magazineUrl={slice.primary.magazineurl ?? ""}
 				/>
 			))}
 		</div>

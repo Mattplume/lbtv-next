@@ -27,8 +27,8 @@ const DerbyMagazineCard: FC<DerbyMagazineCardProps> = ({
 				<Image
 					src={poster.url}
 					alt={poster.alt || "Poster du magazine"}
-					width="1000"
-					height="700"
+					width={1000}
+					height={700}
 					className="object-cover max-w-full rounded-lg"
 				/>
 			</Link>

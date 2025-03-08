@@ -20,3 +20,13 @@ export interface PageHeaderInfos {
   title: string;
   description: string;
 }
+
+export interface DerbyMagazineInfos {
+  poster: Poster;
+  url: string;
+}
+
+type Poster = {
+  url: string;
+  alt: string;
+}
