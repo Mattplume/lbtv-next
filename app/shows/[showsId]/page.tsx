@@ -1,3 +1,5 @@
+"use client";
+
 import { formatVideoDuration } from "@/app/utils";
 import VideoHeader from "@/app/components/VideoHeader";
 import { useSearchParams } from "next/navigation";
