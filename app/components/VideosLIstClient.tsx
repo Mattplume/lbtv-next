@@ -1,68 +1,77 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import VideoCard from "./VideoCard";
 import { VideoNews } from "@/app/types";
 
 interface VideosListClientProps {
-	initialVideos: VideoNews[];
 	playlistId: string;
-	initialNextCursor: string | null;
 }
 
 export default function VideosListClient({
-	initialVideos,
 	playlistId,
-	initialNextCursor,
 }: VideosListClientProps) {
-	// On suppose que l'API retourne 30 vidéos par appel.
-	console.log("INITIAL VIDEOS", initialVideos);
 	const LIMIT = 30;
-	const [videos, setVideos] = useState<VideoNews[]>(initialVideos);
-	const [nextCursor, setNextCursor] = useState<string | null>(
-		initialNextCursor
-	);
-	const [lastChunkCount, setLastChunkCount] = useState<number>(
-		initialVideos.length
-	);
+	const [videos, setVideos] = useState<VideoNews[]>([]);
+	const [nextCursor, setNextCursor] = useState<string | null>(null);
+	const [lastChunkCount, setLastChunkCount] = useState<number>(0);
+	const [loading, setLoading] = useState(true);
 	const [loadingMore, setLoadingMore] = useState(false);
-	const [error, setError] = useState<string | null>(null);
+	const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+	// Chargement initial des vidéos
+	useEffect(() => {
+		const fetchVideos = async () => {
+			try {
+				const res = await fetch(`/api/videos/${playlistId}`);
+				if (!res.ok) throw new Error("Erreur lors du chargement des vidéos");
+
+				const data = await res.json();
+				setVideos(data.data);
+				setLastChunkCount(data.data.length);
+				setNextCursor(data.paging?.cursors?.after || null);
+			} catch (error) {
+				setErrorMessage("Impossible de récupérer les vidéos");
+			} finally {
+				setLoading(false);
+			}
+		};
+
+		fetchVideos();
+	}, [playlistId]);
 
 	const loadMoreVideos = async () => {
 		if (!nextCursor) return;
-		setLoadingMore(true);
-		setError(null);
+		setLoadingMore(true); // Active uniquement le loader du bouton
+		setErrorMessage(null);
+
 		try {
 			const res = await fetch(`/api/videos/${playlistId}?after=${nextCursor}`);
-			if (!res.ok) {
-				throw new Error("Erreur lors du chargement des vidéos");
-			}
+			if (!res.ok) throw new Error("Erreur lors du chargement des vidéos");
+
 			const data = await res.json();
 			const newChunkCount = data.data.length;
-			// Ajoute les nouvelles vidéos à l'existant.
 			setVideos((prev) => [...prev, ...data.data]);
-			// Met à jour le nombre d'éléments récupérés dans ce lot.
 			setLastChunkCount(newChunkCount);
-			// Si le lot contient moins de LIMIT vidéos, il n'y a plus de vidéos à charger.
-			if (newChunkCount < LIMIT) {
-				setNextCursor(null);
-			} else {
-				setNextCursor(data.paging?.cursors?.after || null);
-			}
-		} catch (err) {
-			let errMsg = "Erreur inconnue";
-			if (err instanceof Error) {
-				errMsg = err.message;
-			} else {
-				errMsg = String(err);
-			}
-			setError(errMsg);
+			setNextCursor(data.paging?.cursors?.after || null);
+		} catch (error) {
+			setErrorMessage("Erreur lors du chargement des vidéos");
 		} finally {
 			setLoadingMore(false);
 		}
 	};
 
-	// Le bouton "Voir plus" ne s'affiche que si nextCursor existe et que le dernier lot contenait exactement LIMIT vidéos.
+	// Affichage du loader au chargement initial
+	if (loading) {
+		return (
+			<div className="flex justify-center items-center h-full py-10">
+				<div className="animate-spin rounded-full h-12 w-12 border-t-4 border-blue-500 mb-4"></div>
+				<p className="text-gray-600">Chargement des news...</p>
+			</div>
+		);
+	}
+
+	// Afficher le bouton "Voir plus" seulement si on a récupéré 30 vidéos au dernier appel
 	const showLoadMore = nextCursor !== null && lastChunkCount === LIMIT;
 
 	return (
@@ -72,7 +81,9 @@ export default function VideosListClient({
 					<VideoCard key={video.id} video={video} />
 				))}
 			</div>
-			{error && <div className="text-center text-red-500 mt-4">{error}</div>}
+			{errorMessage && (
+				<div className="text-center text-red-500 mt-4">{errorMessage}</div>
+			)}
 			{showLoadMore && (
 				<div className="flex justify-center mt-12">
 					<button
@@ -80,7 +91,14 @@ export default function VideosListClient({
 						disabled={loadingMore}
 						className="bg-brandColor text-white px-4 py-2 rounded hover:opacity-90 transition duration-300"
 					>
-						{loadingMore ? "Chargement..." : "Voir plus"}
+						{loadingMore ? (
+							<span className="flex items-center gap-2">
+								<div className="animate-spin rounded-full h-5 w-5 border-t-2 border-white"></div>
+								Chargement...
+							</span>
+						) : (
+							"Voir plus"
+						)}
 					</button>
 				</div>
 			)}

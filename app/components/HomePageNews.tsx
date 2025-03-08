@@ -43,7 +43,7 @@ const HomePageNews: FC<HomePageNewsProps> = ({
 }) => {
 	return (
 		<div className="home-news-container w-full flex flex-col items-center lg:max-w-[50%] xl:max-w-[700px]">
-			<h1 className="hidden lg:block text-darkColor text-left w-full">
+			<h1 className="hidden lg:block text-brandColor text-left w-full">
 				À la une
 			</h1>
 			<div className="flex flex-col gap-[24px]">

@@ -2,22 +2,22 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    domains: [
-      "scontent-cdg4-2.xx.fbcdn.net",
-      "fbcdn.net",
-      "images.prismic.io" // Ajout du domaine Prismic
-    ],
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "**.fbcdn.net",
+        hostname: "**.fbcdn.net", // Pour tous les sous-domaines de fbcdn.net
       },
       {
         protocol: "https",
-        hostname: "images.prismic.io",
+        hostname: "scontent-cdg4-2.xx.fbcdn.net", // Domaine spécifique de Facebook
+      },
+      {
+        protocol: "https",
+        hostname: "images.prismic.io", // Domaine de Prismic
       },
     ],
   },
 };
 
 export default nextConfig;
+
