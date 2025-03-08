@@ -1,5 +1,5 @@
 import PageHeader from "../components/PageHeader";
-import VideosListClient from "../components/VideosListClient";
+import VideosListClient from "../components/VideosLIstClient";
 
 export default function NewsPage() {
 	const pageHeader = {
