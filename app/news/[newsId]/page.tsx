@@ -1,17 +1,15 @@
 import { formatVideoDuration } from "@/app/utils";
 import VideoHeader from "@/app/components/VideoHeader";
+import { useSearchParams } from "next/navigation";
 
-export default function NewsPage({
-	searchParams,
-}: {
-	params: { newsId: string };
-	searchParams: Record<string, string>;
-}) {
-	const description = searchParams.description || "";
-	const length = searchParams.length || "0";
-	const embedHtml = searchParams.embed_html || "";
-	const views = searchParams.views || "0";
-	const createdTime = searchParams.created_time || "";
+export default function NewsPage() {
+	const searchParams = useSearchParams();
+
+	const description = searchParams.get("description") || "";
+	const length = searchParams.get("length") || "0";
+	const embedHtml = searchParams.get("embed_html") || "";
+	const views = searchParams.get("views") || "0";
+	const createdTime = searchParams.get("created_time") || "";
 
 	const videoLength = formatVideoDuration(Number(length));
 	const viewsInK = Math.round(Number(views) / 1000);

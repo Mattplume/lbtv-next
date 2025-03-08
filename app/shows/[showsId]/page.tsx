@@ -1,16 +1,15 @@
 import { formatVideoDuration } from "@/app/utils";
+import VideoHeader from "@/app/components/VideoHeader";
+import { useSearchParams } from "next/navigation";
 
-export default function NewsPage({
-	searchParams,
-}: {
-	params: { newsId: string };
-	searchParams: Record<string, string>;
-}) {
-	const description = searchParams.description || "";
-	const length = searchParams.length || "0";
-	const embedHtml = searchParams.embed_html || "";
-	const views = searchParams.views || "0";
-	const createdTime = searchParams.created_time || "";
+export default function NewsPage() {
+	const searchParams = useSearchParams();
+
+	const description = searchParams.get("description") || "";
+	const length = searchParams.get("length") || "0";
+	const embedHtml = searchParams.get("embed_html") || "";
+	const views = searchParams.get("views") || "0";
+	const createdTime = searchParams.get("created_time") || "";
 
 	const videoLength = formatVideoDuration(Number(length));
 	const viewsInK = Math.round(Number(views) / 1000);
@@ -18,6 +17,7 @@ export default function NewsPage({
 	return (
 		<div className="news-id-page fixed inset-0 z-[1000] flex flex-col lg:flex-row bg-white">
 			{/* Bloc vidéo : s'adapte à l'écran avec conservation du ratio */}
+			<VideoHeader />
 			<div className="relative w-full lg:w-[80%] flex justify-center items-center">
 				<div className="relative h-full w-full max-w-[1280px]">
 					<div className="w-full h-0 pb-[56.25%] relative">

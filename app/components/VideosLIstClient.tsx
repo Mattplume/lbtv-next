@@ -72,7 +72,7 @@ export default function VideosListClient({
 		return (
 			<div className="flex justify-center items-center h-full py-10">
 				<div className="animate-spin rounded-full h-12 w-12 border-t-4 border-blue-500 mb-4"></div>
-				<p className="text-gray-600">Chargement des news...</p>
+				<p className="text-gray-600">Chargement des vidéos...</p>
 			</div>
 		);
 	}
