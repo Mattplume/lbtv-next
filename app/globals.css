@@ -63,7 +63,7 @@ h5 {
 	height: 100%;
 }
 
-.nav-link:before {
+.text-nav-link:before {
 	content: "";
 	position: absolute;
 	width: 100%;
@@ -77,13 +77,13 @@ h5 {
 	transition: 0.15s linear;
 }
 
-.nav-link:hover:before {
+.text-nav-link:hover:before {
 	visibility: visible;
 	transform: scaleX(1);
 	transition: 0.15s linear;
 }
 
-.is-active:before {
+.text-nav-link.is-active:before {
 	content: "";
 	position: absolute;
 	width: 100%;
