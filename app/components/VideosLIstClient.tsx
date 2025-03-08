@@ -24,13 +24,16 @@ export default function VideosListClient({
 		const fetchVideos = async () => {
 			try {
 				const res = await fetch(`/api/videos/${playlistId}`);
-				if (!res.ok) throw new Error("Erreur lors du chargement des vidéos");
+				if (!res.ok) {
+					setErrorMessage("Erreur lors du chargement des vidéos");
+					return;
+				}
 
 				const data = await res.json();
 				setVideos(data.data);
 				setLastChunkCount(data.data.length);
 				setNextCursor(data.paging?.cursors?.after || null);
-			} catch (error) {
+			} catch {
 				setErrorMessage("Impossible de récupérer les vidéos");
 			} finally {
 				setLoading(false);
@@ -42,19 +45,22 @@ export default function VideosListClient({
 
 	const loadMoreVideos = async () => {
 		if (!nextCursor) return;
-		setLoadingMore(true); // Active uniquement le loader du bouton
+		setLoadingMore(true);
 		setErrorMessage(null);
 
 		try {
 			const res = await fetch(`/api/videos/${playlistId}?after=${nextCursor}`);
-			if (!res.ok) throw new Error("Erreur lors du chargement des vidéos");
+			if (!res.ok) {
+				setErrorMessage("Erreur lors du chargement des vidéos");
+				return;
+			}
 
 			const data = await res.json();
 			const newChunkCount = data.data.length;
 			setVideos((prev) => [...prev, ...data.data]);
 			setLastChunkCount(newChunkCount);
 			setNextCursor(data.paging?.cursors?.after || null);
-		} catch (error) {
+		} catch {
 			setErrorMessage("Erreur lors du chargement des vidéos");
 		} finally {
 			setLoadingMore(false);
