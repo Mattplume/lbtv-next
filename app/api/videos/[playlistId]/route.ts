@@ -2,12 +2,11 @@ import { NextRequest, NextResponse } from "next/server";
 import { getFacebookVideos } from "@/app/lib/facebook";
 
 export async function GET(
-  req: NextRequest,
-  context: { params: { playlistId: string } }
+  request: NextRequest,
+  { params }: { params: Promise<{ playlistId: string }> }
 ) {
-  // Attendre `params` avant de l'utiliser
-  const { playlistId } = await context.params;
-  const { searchParams } = new URL(req.url);
+  const { playlistId } = await params;
+  const { searchParams } = new URL(request.url);
   const afterCursor = searchParams.get("after") || "";
 
   try {
