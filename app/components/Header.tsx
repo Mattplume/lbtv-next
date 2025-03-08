@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 
 const Header: React.FC = () => {
 	const commonStyle =
-		"text-nav-link flex h-full items-center text-navLink relative";
+		"text-nav-link flex h-full items-center text-white relative";
 	const pathname = usePathname();
 
 	return (
