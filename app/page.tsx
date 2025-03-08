@@ -22,13 +22,13 @@ export default async function Page() {
 	) as Content.NewsBlockSecondSlice | undefined;
 
 	return (
-		<div className="w-full flex justify-between lg:max-w-[90%] lg:pt-[64px] xl:max-w-[1280px] mx-auto pb-[100px]">
+		<div className="w-full flex justify-between lg:max-w-[90%] lg:pt-[64px] xl:max-w-[1280px] mx-auto md:pb-[80px]">
 			<HomePageNews
 				newsBlockFirstSlice={newsBlockFirstSlice!}
 				newsBlockSecondSlice={newsBlockSecondSlice!}
 			/>
 			<div className="feed-container flex flex-col pt-4">
-				<h3>La Baule sur les réseaux</h3>
+				<h3 className="text-brandColor">La Baule sur les réseaux</h3>
 				<div className="flex flex-col gap-[24px]">
 					<Feed src={lbtvSrc} />
 					<Feed src={lbSrc} />

@@ -1,0 +1,34 @@
+{
+  "id": "magazine",
+  "type": "SharedSlice",
+  "name": "Magazine",
+  "description": "Magazine",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "poster": {
+          "type": "Image",
+          "config": {
+            "label": "Poster",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "magazineurl": {
+          "type": "Text",
+          "config": {
+            "label": "MagazineURL",
+            "placeholder": "Renseigner l'URL du magazine"
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}
