@@ -3,7 +3,8 @@ import ImageComponent from "./ImageComponent";
 import { usePathname } from "next/navigation";
 
 const Header: React.FC = () => {
-	const commonStyle = "flex h-full items-center text-navLink";
+	const commonStyle =
+		"text-nav-link flex h-full items-center text-white relative";
 	const pathname = usePathname();
 
 	return (
@@ -33,7 +34,7 @@ const Header: React.FC = () => {
 									pathname === "/" ? `is-active ${commonStyle}` : commonStyle
 								}
 							>
-								<span>🏠 Accueil</span>
+								<span className="text-white">🏠 Accueil</span>
 							</Link>
 						</li>
 						<li className="nav-link mr-8 relative">
@@ -47,7 +48,7 @@ const Header: React.FC = () => {
 										: commonStyle
 								}
 							>
-								<span className={commonStyle}>📆 News</span>
+								<span className="text-white">📆 News</span>
 							</Link>
 						</li>
 						<li className="nav-link mr-8 relative">
@@ -61,7 +62,7 @@ const Header: React.FC = () => {
 										: commonStyle
 								}
 							>
-								<span className={commonStyle}>📺 Émissions</span>
+								<span className="text-white">📺 Émissions</span>
 							</Link>
 						</li>
 						<li className="nav-link relative">
@@ -75,7 +76,7 @@ const Header: React.FC = () => {
 										: commonStyle
 								}
 							>
-								<span className={commonStyle}>🗞️ Derby Mag</span>
+								<span className="text-white">🗞️ Derby Mag</span>
 							</Link>
 						</li>
 					</ul>

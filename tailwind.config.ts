@@ -18,7 +18,6 @@ export default {
         darkColor: "var(--darkColor)",
         brandColor: "var(--brandColor)",
         navLink: "white",
-        navLinkHover: "red",
         cardShadow: "0 1 8 2 rgba(17 20 41 0.6)"
       },
       transitionProperty: {
