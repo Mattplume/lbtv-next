@@ -60,7 +60,7 @@ export async function getFacebookVideos(playlistId: string, afterCursor: string 
     params.append("after", afterCursor);
   }
   const url = `${FACEBOOK_API_BASE}/${playlistId}/videos?${params.toString()}`;
-  const res = await fetch(url);
+  const res = await fetch(url, { next: { revalidate: 3600 } });
   if (!res.ok) {
     throw new Error("Erreur lors de la récupération des vidéos Facebook");
   }
