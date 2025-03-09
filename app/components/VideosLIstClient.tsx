@@ -11,9 +11,13 @@ interface VideosListClientProps {
 export default function VideosListClient({
 	playlistId,
 }: VideosListClientProps) {
-	const LIMIT = 30;
-	const [videos, setVideos] = useState<VideoNews[]>([]);
+	const LIMIT = 30; // On s'attend à recevoir 30 vidéos par appel de l'API
+	// Vidéos déjà affichées (toujours en multiples de 4)
+	const [displayedVideos, setDisplayedVideos] = useState<VideoNews[]>([]);
+	// Vidéos restantes qui ne complètent pas une rangée
+	const [leftoverVideos, setLeftoverVideos] = useState<VideoNews[]>([]);
 	const [nextCursor, setNextCursor] = useState<string | null>(null);
+	// Pour vérifier le nombre de vidéos récupérées dans le dernier appel (depuis l'API, non fusionnées)
 	const [lastChunkCount, setLastChunkCount] = useState<number>(0);
 	const [loading, setLoading] = useState(true);
 	const [loadingMore, setLoadingMore] = useState(false);
@@ -21,17 +25,21 @@ export default function VideosListClient({
 
 	// Chargement initial des vidéos
 	useEffect(() => {
-		const fetchVideos = async () => {
+		const fetchInitialVideos = async () => {
 			try {
 				const res = await fetch(`/api/videos/${playlistId}`);
 				if (!res.ok) {
-					setErrorMessage("Erreur lors du chargement des vidéos");
+					setErrorMessage("Erreur lors du chargement initial des vidéos");
 					return;
 				}
-
 				const data = await res.json();
-				setVideos(data.data);
-				setLastChunkCount(data.data.length);
+				const batch: VideoNews[] = data.data;
+				const completeCount = Math.floor(batch.length / 4) * 4;
+				const completeVideos = batch.slice(0, completeCount);
+				const leftovers = batch.slice(completeCount);
+				setDisplayedVideos(completeVideos);
+				setLeftoverVideos(leftovers);
+				setLastChunkCount(batch.length); // nombre total d'éléments dans ce lot
 				setNextCursor(data.paging?.cursors?.after || null);
 			} catch {
 				setErrorMessage("Impossible de récupérer les vidéos");
@@ -40,7 +48,7 @@ export default function VideosListClient({
 			}
 		};
 
-		fetchVideos();
+		fetchInitialVideos();
 	}, [playlistId]);
 
 	const loadMoreVideos = async () => {
@@ -54,11 +62,19 @@ export default function VideosListClient({
 				setErrorMessage("Erreur lors du chargement des vidéos");
 				return;
 			}
-
 			const data = await res.json();
-			const newChunkCount = data.data.length;
-			setVideos((prev) => [...prev, ...data.data]);
-			setLastChunkCount(newChunkCount);
+			const newBatch: VideoNews[] = data.data;
+			setLastChunkCount(newBatch.length); // on enregistre le nombre d'éléments dans ce nouveau lot
+
+			// Fusionner les leftovers actuels avec le nouveau lot
+			const merged = [...leftoverVideos, ...newBatch];
+			const completeCount = Math.floor(merged.length / 4) * 4;
+			const newCompleteVideos = merged.slice(0, completeCount);
+			const newLeftovers = merged.slice(completeCount);
+
+			// Ajouter les nouvelles rangées complètes aux vidéos affichées
+			setDisplayedVideos((prev) => [...prev, ...newCompleteVideos]);
+			setLeftoverVideos(newLeftovers);
 			setNextCursor(data.paging?.cursors?.after || null);
 		} catch {
 			setErrorMessage("Erreur lors du chargement des vidéos");
@@ -67,7 +83,7 @@ export default function VideosListClient({
 		}
 	};
 
-	// Affichage du loader au chargement initial
+	// Affichage du loader lors du chargement initial
 	if (loading) {
 		return (
 			<div className="flex flex-col justify-center items-center h-full py-10">
@@ -77,13 +93,14 @@ export default function VideosListClient({
 		);
 	}
 
-	// Afficher le bouton "Voir plus" seulement si on a récupéré 30 vidéos au dernier appel
+	// Le bouton "Voir plus" s'affiche si nextCursor existe
+	// ET que le dernier lot récupéré contenait exactement LIMIT vidéos (indiquant qu'il pourrait y avoir d'autres vidéos)
 	const showLoadMore = nextCursor !== null && lastChunkCount === LIMIT;
 
 	return (
 		<>
 			<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-				{videos.map((video) => (
+				{displayedVideos.map((video) => (
 					<VideoCard key={video.id} video={video} />
 				))}
 			</div>
