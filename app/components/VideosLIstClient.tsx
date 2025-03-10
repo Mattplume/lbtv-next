@@ -99,7 +99,7 @@ export default function VideosListClient({
 
 	return (
 		<>
-			<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+			<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
 				{displayedVideos.map((video) => (
 					<VideoCard key={video.id} video={video} />
 				))}
@@ -112,7 +112,7 @@ export default function VideosListClient({
 					<button
 						onClick={loadMoreVideos}
 						disabled={loadingMore}
-						className="bg-brandColor text-white px-4 py-2 rounded hover:opacity-90 transition duration-300"
+						className="bg-brandColor text-white text-sm font-bold px-4 py-2 rounded hover:opacity-90 transition duration-300"
 					>
 						{loadingMore ? (
 							<span className="flex items-center gap-2">

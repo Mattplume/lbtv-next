@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { FC } from "react";
 import { VideoNews } from "@/app/types";
-import { formatVideoDuration } from "../utils";
+import { formatVideoDuration, timeAgo } from "../utils";
 
 interface VideoCardProps {
 	video: VideoNews;
@@ -11,6 +11,8 @@ interface VideoCardProps {
 const VideoCard: FC<VideoCardProps> = ({ video }) => {
 	const viewsInK = Math.round(video.views / 1000);
 	const videoLength = formatVideoDuration(video.length);
+	const timeAgoCreated = timeAgo(video.created_time);
+
 	return (
 		<Link
 			href={{
@@ -23,7 +25,7 @@ const VideoCard: FC<VideoCardProps> = ({ video }) => {
 					created_time: video.created_time,
 				},
 			}}
-			className="flex md:block md:bg-white md:rounded-lg md:shadow-md overflow-hidden md:hover:shadow-xl transition-shadow"
+			className="flex md:block md:bg-white bg-opacity-20 md:rounded-xl overflow-hidden md:hover:shadow-cardShadow transition-shadow duration-500"
 		>
 			{/* Conteneur pour l'image en ratio 16:9 */}
 			<div className="relative w-full aspect-video rounded-md md:rounded-none">
@@ -35,7 +37,7 @@ const VideoCard: FC<VideoCardProps> = ({ video }) => {
 					sizes="100vw"
 					priority
 				/>
-				<span className="absolute z-4 text-gray-300 text-xs bottom-1 right-1 bg-slate-700 bg-opacity-60 py-0.5 px-1 rounded-sm">
+				<span className="absolute z-4 text-gray-200 text-xs bottom-1 right-1 bg-slate-700 bg-opacity-70 py-0.5 px-1 rounded-sm">
 					{videoLength}
 				</span>
 			</div>
@@ -43,12 +45,12 @@ const VideoCard: FC<VideoCardProps> = ({ video }) => {
 			{/* Contenu texte */}
 			<div className="pl-4 md:p-4">
 				{video.description && (
-					<p className="text-gray-600 font-bold md:font-normal text-sm">
-						{video.description.slice(0, 110).concat("...")}
+					<p className="text-gray-600 font-semibold text-sm line-clamp-3">
+						{video.description.slice(0, 115).concat("...")}
 					</p>
 				)}
-				<span className="text-gray-400 md:text-gray-800 text-xs">
-					{viewsInK}k vues
+				<span className="text-gray-400 md:text-gray-400 text-xs">
+					{viewsInK}k vues . {timeAgoCreated}
 				</span>
 			</div>
 		</Link>
