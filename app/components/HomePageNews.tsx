@@ -13,9 +13,9 @@ const HomePageNewsCard: FC<HomePageNewsCardProps> = ({
 	iframeUrl,
 }) => {
 	return (
-		<div className="card bg-background lg:bg-white flex flex-col lg:shadow-md lg:rounded-xl lg:max-w-[700px] w-full max-h-max first-of-type:mb-4 lg:first-of-type:mb-0">
+		<div className="card bg-background lg:bg-white flex flex-col md:shadow-cardShadow lg:rounded-xl lg:max-w-[700px] w-full max-h-max first-of-type:mb-4 lg:first-of-type:mb-0">
 			<div className="px-4 lg:p-4 order-2 lg:order-1">
-				<h5 className="text-lg mb-2">{title}</h5>
+				<h5 className="text-lg mb-2 md:mb-0">{title}</h5>
 			</div>
 			<div className="mb-4 lg:mb-0 w-full lg:max-w-[700px] order-1 lg:order-2">
 				<div

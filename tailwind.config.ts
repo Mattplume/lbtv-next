@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import lineClamp from '@tailwindcss/line-clamp'
 
 export default {
   content: [
@@ -12,18 +13,20 @@ export default {
       heading: {
         h1 : "40px"
       },
+      boxShadow: {
+        cardShadow: "var(--cardShadow)",
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
         darkColor: "var(--darkColor)",
         brandColor: "var(--brandColor)",
-        navLink: "white",
-        cardShadow: "0 1 8 2 rgba(17 20 41 0.6)"
+        navLink: "white"
       },
       transitionProperty: {
         colors: "color",
       },
     },
   },
-  plugins: [],
+    plugins: [lineClamp],
 } satisfies Config;

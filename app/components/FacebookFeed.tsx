@@ -6,7 +6,7 @@ type FeedProps = {
 
 const Feed: FC<FeedProps> = ({ src }) => {
 	return (
-		<div className="feed-card bg-white p-6 rounded-xl shadow-md max-h-fit">
+		<div className="feed-card bg-white p-6 rounded-xl md:shadow-cardShadow max-h-fit">
 			<iframe
 				src={src}
 				width="350"
