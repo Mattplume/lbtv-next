@@ -49,7 +49,7 @@ const VideoCard: FC<VideoCardProps> = ({ video }) => {
 						{video.description.slice(0, 115).concat("...")}
 					</p>
 				)}
-				<span className="text-gray-400 md:text-gray-400 text-xs">
+				<span className="text-gray-500 md:text-gray-400 text-xs">
 					{viewsInK}k vues . {timeAgoCreated}
 				</span>
 			</div>
