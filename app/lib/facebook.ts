@@ -49,6 +49,12 @@ async function getFacebookToken(): Promise<string> {
  * @param afterCursor (optionnel) Le curseur pour la pagination.
  * @returns La réponse JSON de l'API Facebook.
  */
+interface NextFetchOptions extends RequestInit {
+  next?: {
+    revalidate: number;
+  };
+}
+
 export async function getFacebookVideos(playlistId: string, afterCursor: string = "") {
   const token = await getFacebookToken();
   const params = new URLSearchParams({
@@ -60,9 +66,12 @@ export async function getFacebookVideos(playlistId: string, afterCursor: string 
     params.append("after", afterCursor);
   }
   const url = `${FACEBOOK_API_BASE}/${playlistId}/videos?${params.toString()}`;
-  const res = await fetch(url, { next: { revalidate: 3600 } });
+  
+  const options: NextFetchOptions = { next: { revalidate: 3600 } };
+  const res = await fetch(url, options);
   if (!res.ok) {
     throw new Error("Erreur lors de la récupération des vidéos Facebook");
   }
   return res.json();
 }
+

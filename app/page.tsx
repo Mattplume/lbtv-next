@@ -7,7 +7,11 @@ import Feed from "./components/FacebookFeed";
 
 export default async function Page() {
 	const client = createClient();
-	const page = await client.getSingle("homepage");
+	// Ajoute l'option revalidate pour l'ISR (1h ici)
+	const page = await client.getSingle("homepage", {
+		next: { revalidate: 3600 },
+	});
+
 	const lbtvSrc =
 		"https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Flabauletv&tabs=timeline&width=350&height=500&small_header=true&adapt_container_width=true&hide_cover=true&show_facepile=true";
 	const lbSrc =
@@ -40,7 +44,9 @@ export default async function Page() {
 
 export async function generateMetadata(): Promise<Metadata> {
 	const client = createClient();
-	const page = await client.getSingle("homepage");
+	const page = await client.getSingle("homepage", {
+		next: { revalidate: 3600 },
+	});
 
 	return {
 		title: page.data.meta_title,

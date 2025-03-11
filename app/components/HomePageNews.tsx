@@ -13,11 +13,11 @@ const HomePageNewsCard: FC<HomePageNewsCardProps> = ({
 	iframeUrl,
 }) => {
 	return (
-		<div className="card bg-background lg:bg-white flex flex-col md:shadow-cardShadow lg:rounded-xl lg:max-w-[700px] w-full max-h-max first-of-type:mb-4 lg:first-of-type:mb-0">
+		<div className="card bg-background lg:bg-white flex flex-col md:shadow-cardShadow lg:rounded-xl xl:max-w-[760px] md:max-w-[620px] first-of-type:mb-4 lg:first-of-type:mb-0">
 			<div className="px-4 lg:p-4 order-2 lg:order-1">
 				<h5 className="text-lg mb-2 md:mb-0">{title}</h5>
 			</div>
-			<div className="mb-4 lg:mb-0 w-full lg:max-w-[700px] order-1 lg:order-2">
+			<div className="mb-4 lg:mb-0 w-full lg:max-w-[760px] order-1 lg:order-2">
 				<div
 					dangerouslySetInnerHTML={{
 						__html: iframeUrl,
@@ -42,11 +42,11 @@ const HomePageNews: FC<HomePageNewsProps> = ({
 	newsBlockSecondSlice,
 }) => {
 	return (
-		<div className="home-news-container w-full flex flex-col items-center lg:max-w-[50%] xl:max-w-[700px]">
+		<div className="home-news-container w-full flex flex-col items-center lg:max-w-[60%] xl:max-w-[760px] md:max-w-[620px]">
 			<h1 className="hidden lg:block text-brandColor text-left w-full">
 				À la une
 			</h1>
-			<div className="flex flex-col gap-[24px]">
+			<div className="flex flex-col gap-[24px] w-full">
 				{newsBlockFirstSlice && (
 					<HomePageNewsCard
 						title={newsBlockFirstSlice.primary.newsblocktitlefirst ?? ""}
