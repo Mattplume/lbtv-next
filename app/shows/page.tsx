@@ -11,7 +11,7 @@ export default function ShowsPage() {
 	return (
 		<>
 			<PageHeader pageHeader={pageHeader} />
-			<div className="container mx-auto p-4 pt-8 md:pt-10 xl:max-w-[1280px]">
+			<div className="container mx-auto min-h-screen p-4 pt-8 md:pt-10 xl:max-w-[1280px]">
 				<VideosListClient playlistId="1508652705876539" />
 			</div>
 		</>

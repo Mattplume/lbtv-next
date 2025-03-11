@@ -22,7 +22,7 @@ export default async function DerbysPage() {
 	return (
 		<>
 			<PageHeader pageHeader={pageHeader} />
-			<div className="container mx-auto p-4 pt-8 md:pt-10 min-h-min">
+			<div className="container min-h-screen mx-auto p-4 pt-8 md:pt-10">
 				<DerbyMagazine magazineSlices={magazineSlices} />
 			</div>
 		</>
