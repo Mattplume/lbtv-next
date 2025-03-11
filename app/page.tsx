@@ -9,7 +9,8 @@ export default async function Page() {
 	const client = createClient();
 	// Ajoute l'option revalidate pour l'ISR (1h ici)
 	const page = await client.getSingle("homepage", {
-		next: { revalidate: 3600 },
+		// @ts-expect-error Prismic allows 'revalidate' option, even though TypeScript doesn't recognize it
+		revalidate: 3600,
 	});
 
 	const lbtvSrc =
