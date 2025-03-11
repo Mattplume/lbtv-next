@@ -28,13 +28,13 @@ const VideoCard: FC<VideoCardProps> = ({ video }) => {
 			className="flex md:block md:bg-white bg-opacity-20 md:rounded-xl overflow-hidden md:hover:shadow-cardShadow transition-shadow duration-500"
 		>
 			{/* Conteneur pour l'image en ratio 16:9 */}
-			<div className="relative w-full aspect-video rounded-md md:rounded-none">
+			<div className="relative aspect-video rounded-md md:rounded-none max-w-[33%] w-[100%] min-w-[33%] md:w-full md:min-w-full">
 				<Image
 					src={video.thumbnails.data[0].uri}
 					alt="Aperçu vidéo"
 					fill
 					className="object-cover relative rounded-md md:rounded-none"
-					sizes="100vw"
+					sizes="100%"
 					priority
 				/>
 				<span className="absolute z-4 text-gray-200 text-xs bottom-1 right-1 bg-slate-700 bg-opacity-70 py-0.5 px-1 rounded-sm">
