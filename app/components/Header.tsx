@@ -8,8 +8,8 @@ const Header: React.FC = () => {
 	const pathname = usePathname();
 
 	return (
-		<header className="fixed top-0 z-[1000] h-[70px] bg-darkColor w-full flex align-middle">
-			<div className="header-inner flex justify-between max-w-[1280px] mx-auto w-full md:max-w-[90%]">
+		<header className="fixed top-0 z-[1000] h-[70px] bg-darkColor w-full flex align-middle justify-center">
+			<div className="header-inner flex justify-between w-[90%] xl:w-full xl:max-w-[1280px]">
 				<nav className="flex justify-start align-middle h-[70px]">
 					<div className="mr-20">
 						<Link

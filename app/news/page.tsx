@@ -11,7 +11,7 @@ export default function NewsPage() {
 	return (
 		<>
 			<PageHeader pageHeader={pageHeader} />
-			<div className="container mx-auto p-4 min-h-screen pt-8 md:pt-10">
+			<div className="container mx-auto p-4 pt-8 md:pt-10 xl:max-w-[1280px]">
 				<VideosListClient playlistId="556385785339097" />
 			</div>
 		</>
