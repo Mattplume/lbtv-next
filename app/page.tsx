@@ -45,7 +45,8 @@ export default async function Page() {
 export async function generateMetadata(): Promise<Metadata> {
 	const client = createClient();
 	const page = await client.getSingle("homepage", {
-		next: { revalidate: 3600 },
+		// @ts-expect-error Prismic allows 'revalidate' option, even though TypeScript doesn't recognize it
+		revalidate: 3600,
 	});
 
 	return {
