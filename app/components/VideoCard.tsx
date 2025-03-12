@@ -6,9 +6,10 @@ import { formatVideoDuration, timeAgo } from "../utils";
 
 interface VideoCardProps {
 	video: VideoNews;
+	index: number;
 }
 
-const VideoCard: FC<VideoCardProps> = ({ video }) => {
+const VideoCard: FC<VideoCardProps> = ({ video, index }) => {
 	const viewsInK = Math.round(video.views / 1000);
 	const videoLength = formatVideoDuration(video.length);
 	const timeAgoCreated = timeAgo(video.created_time);
@@ -34,8 +35,9 @@ const VideoCard: FC<VideoCardProps> = ({ video }) => {
 					alt="Aperçu vidéo"
 					fill
 					className="object-cover relative rounded-md md:rounded-none"
-					sizes="100%"
-					priority
+					sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+					loading={index < 4 ? "eager" : "lazy"} // Les 4 premières images se chargent en priorité
+					priority={index < 4} // Priorité aux premières vidéos
 				/>
 				<span className="absolute z-4 text-gray-200 text-xs bottom-1 right-1 bg-slate-700 bg-opacity-70 py-0.5 px-1 rounded-sm">
 					{videoLength}
