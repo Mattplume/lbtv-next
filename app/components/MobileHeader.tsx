@@ -3,9 +3,11 @@
 import { useState } from "react";
 import Link from "next/link";
 import ImageComponent from "./ImageComponent";
+import { usePathname } from "next/navigation";
 
 const MobileHeader: React.FC = () => {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
+	const pathname = usePathname();
 
 	const toggleMenu = () => {
 		setIsMenuOpen(!isMenuOpen);
@@ -50,40 +52,48 @@ const MobileHeader: React.FC = () => {
 				<ul className="flex flex-col items-center py-4">
 					<li className="w-full mb-3">
 						<Link
-							className="flex flex-row justify-between items-center"
+							className={`flex flex-row justify-between items-center ${pathname === "/" ? "is-active" : ""}`}
 							href="/"
 							onClick={() => setIsMenuOpen(false)}
 						>
-							<span className="text-white text-2xl">🏠 Accueil</span>
+							<span className="text-nav-link-mobile relative text-white text-[1.5rem] my-[3.5px]">
+								🏠 Accueil
+							</span>
 						</Link>
 					</li>
 					<li className="w-full mb-3">
 						<Link
 							href="/news"
 							onClick={() => setIsMenuOpen(false)}
-							className="flex flex-row w-full justify-between items-center"
+							className={`flex flex-row justify-between items-center ${pathname === "/news" ? "is-active" : ""}`}
 						>
-							<span className="text-white text-2xl">📆 News</span>
+							<span className="text-nav-link-mobile relative text-white text-[1.5rem] my-[3.5px]">
+								📆 News
+							</span>
 						</Link>
 					</li>
 					<li className="w-full mb-3">
 						<Link
-							className="flex flex-row justify-between items-center"
+							className={`flex flex-row justify-between items-center ${pathname === "/shows" ? "is-active" : ""}`}
 							href="/shows"
 							onClick={() => setIsMenuOpen(false)}
 						>
 							{" "}
-							<span className="text-white text-2xl">🎥 Émissions</span>
+							<span className="text-nav-link-mobile relative text-white text-[1.5rem] my-[3.5px]">
+								📺 Émissions
+							</span>
 						</Link>
 					</li>
 					<li className="w-full mb-3">
 						<Link
-							className="flex flex-row justify-between items-center"
+							className={`flex flex-row justify-between items-center ${pathname === "/derby" ? "is-active" : ""}`}
 							href="/derbys"
 							onClick={() => setIsMenuOpen(false)}
 						>
 							{" "}
-							<span className="text-white text-2xl">🗞️ Derby Mag</span>
+							<span className="text-nav-link-mobile relative text-white text-[1.5rem] my-[3.5px]">
+								🗞️ Derby Mag
+							</span>
 						</Link>
 					</li>
 				</ul>
