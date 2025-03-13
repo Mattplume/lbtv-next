@@ -26,7 +26,7 @@ const VideoCard: FC<VideoCardProps> = ({ video, index, createdTime }) => {
 					created_time: createdTime,
 				},
 			}}
-			className="flex md:block md:bg-white bg-opacity-20 md:rounded-xl overflow-hidden md:hover:scale-105 transition-scale duration-500 ease-out"
+			className="flex md:block md:bg-white bg-opacity-20 md:rounded-xl overflow-hidden md:hover:scale-105 md:hover:shadow-lg transition-all duration-500 ease-out"
 		>
 			{/* Conteneur pour l'image en ratio 16:9 */}
 			<div className="relative aspect-video rounded-md md:rounded-none h-[100%] md:h-auto max-w-[33%] w-[100%] min-w-[33%] md:w-full md:min-w-full">
