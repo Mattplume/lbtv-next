@@ -6,8 +6,7 @@ const useIsFullScreen = () => {
   useEffect(() => {
     const handleFullscreenChange = () => {
       setIsFullscreen(
-        document.fullscreenElement !== null ||
-          document.webkitFullscreenElement !== null
+        document.fullscreenElement !== null
       );
     };
 
