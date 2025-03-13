@@ -2,17 +2,17 @@ import Link from "next/link";
 import Image from "next/image";
 import { FC } from "react";
 import { VideoNews } from "@/app/types";
-import { formatVideoDuration, timeAgo } from "../utils";
+import { formatVideoDuration } from "../utils";
 
 interface VideoCardProps {
 	video: VideoNews;
 	index: number;
+	createdTime: string;
 }
 
-const VideoCard: FC<VideoCardProps> = ({ video, index }) => {
+const VideoCard: FC<VideoCardProps> = ({ video, index, createdTime }) => {
 	const viewsInK = Math.round(video.views / 1000);
 	const videoLength = formatVideoDuration(video.length);
-	const timeAgoCreated = timeAgo(video.created_time);
 
 	return (
 		<Link
@@ -23,10 +23,10 @@ const VideoCard: FC<VideoCardProps> = ({ video, index }) => {
 					length: video.length,
 					embed_html: video.embed_html,
 					views: video.views,
-					created_time: video.created_time,
+					created_time: createdTime,
 				},
 			}}
-			className="flex md:block md:bg-white bg-opacity-20 md:rounded-xl overflow-hidden md:hover:shadow-cardShadow transition-shadow duration-500"
+			className="flex md:block md:bg-white bg-opacity-20 md:rounded-xl overflow-hidden md:hover:scale-105 transition-scale duration-500 ease-out"
 		>
 			{/* Conteneur pour l'image en ratio 16:9 */}
 			<div className="relative aspect-video rounded-md md:rounded-none h-[100%] md:h-auto max-w-[33%] w-[100%] min-w-[33%] md:w-full md:min-w-full">
@@ -52,7 +52,7 @@ const VideoCard: FC<VideoCardProps> = ({ video, index }) => {
 					</p>
 				)}
 				<span className="text-gray-500 md:text-gray-400 text-xs">
-					{viewsInK}k vues . {timeAgoCreated}
+					{viewsInK}k vues . {createdTime}
 				</span>
 			</div>
 		</Link>

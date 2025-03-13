@@ -33,7 +33,7 @@ export default async function Page() {
 				newsBlockSecondSlice={newsBlockSecondSlice!}
 			/>
 			<div className="feed-container flex flex-col pt-4">
-				<h3 className="text-brandColor">La Baule sur les réseaux</h3>
+				<h3 className="text-brandColor text-xl">La Baule sur les réseaux</h3>
 				<div className="flex flex-col gap-[24px]">
 					<Feed src={lbtvSrc} />
 					<Feed src={lbSrc} />

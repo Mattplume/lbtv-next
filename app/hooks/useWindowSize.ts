@@ -1,28 +1,29 @@
 import { useEffect, useState } from "react";
 
 interface WindowSize {
-  currentWidth: number | undefined;
+  currentWidth: number | null;
 }
 
 const useWindowSize = (): WindowSize => {
   const [windowSize, setWindowSize] = useState<WindowSize>({
-    currentWidth: 768,
+    currentWidth: null, // 🛑 Commence à `null` pour éviter l'incohérence SSR/Client
   });
 
   useEffect(() => {
-      const handleResize = () => {
-          setWindowSize({
-            currentWidth: window.innerWidth,
-          });
-      };
+    const handleResize = () => {
+      setWindowSize({ currentWidth: window.innerWidth });
+    };
 
-      window.addEventListener('resize', handleResize);
-      handleResize(); // Appel initial pour définir la taille
+    if (typeof window !== "undefined") {
+      window.addEventListener("resize", handleResize);
+      handleResize(); // Déclenche l'update après le montage
+    }
 
-      return () => window.removeEventListener('resize', handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return windowSize;
 };
 
 export default useWindowSize;
+

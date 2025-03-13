@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import VideoCard from "./VideoCard";
 import { VideoNews } from "@/app/types";
+import { timeAgo } from "../utils";
 
 interface VideosListClientProps {
 	playlistId: string;
@@ -100,9 +101,17 @@ export default function VideosListClient({
 	return (
 		<>
 			<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
-				{displayedVideos.map((video, i) => (
-					<VideoCard key={video.id} video={video} index={i} />
-				))}
+				{displayedVideos.map((video, i) => {
+					const timeAgoCreated = timeAgo(video.created_time);
+					return (
+						<VideoCard
+							key={video.id}
+							video={video}
+							index={i}
+							createdTime={timeAgoCreated}
+						/>
+					);
+				})}
 			</div>
 			{errorMessage && (
 				<div className="text-center text-red-500 mt-4">{errorMessage}</div>
