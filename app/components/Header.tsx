@@ -104,7 +104,7 @@ const Header: React.FC = () => {
 						<li className="mr-4">
 							{" "}
 							<Link
-								href="https://www.tiktok.com/labauletv"
+								href="https://www.tiktok.com/@labaule.tv"
 								aria-label="tiktok-link"
 								target="blank"
 								rel="noopenner noreferrer"
@@ -144,7 +144,7 @@ const Header: React.FC = () => {
 							{" "}
 							<Link
 								href="https://www.facebook.com/labauletv"
-								aria-label="tiktok-link"
+								aria-label="linkedIn-link"
 								target="blank"
 								rel="noopenner noreferrer"
 							>
