@@ -18,16 +18,10 @@
 				"value": "ready",
 				"type": "Text"
 			},
-			"newsblocktitlefirstdemo": {
-				"__TYPE__": "StructuredTextContent",
-				"value": [
-					{
-						"type": "paragraph",
-						"content": {
-							"text": "Dolor laborum dolore dolor eu duis sunt occaecat anim et do ut. Irure consectetur incididunt magna nostrud deserunt. Mollit sint mollit minim ipsum in ad sit."
-						}
-					}
-				]
+			"newsblocktagfirst": {
+				"__TYPE__": "FieldContent",
+				"value": "eight",
+				"type": "Text"
 			}
 		},
 		"items": []

@@ -198,6 +198,16 @@ export type MagazineSlice = prismic.SharedSlice<
  */
 export interface NewsBlockFirstSliceDefaultPrimary {
   /**
+   * newsBlockTagFirst field in *NewsBlockFirst → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Renseigner le tag de catégorie de votre news
+   * - **API ID Path**: news_block_first.default.primary.newsblocktagfirst
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  newsblocktagfirst: prismic.KeyTextField;
+
+  /**
    * newsBlockTitleFirst field in *NewsBlockFirst → Default → Primary*
    *
    * - **Field Type**: Text
@@ -226,16 +236,6 @@ export interface NewsBlockFirstSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   newsblockvideoiframe: prismic.KeyTextField;
-
-  /**
-   * newsBlockTitleFirstDemo field in *NewsBlockFirst → Default → Primary*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: news_block_first.default.primary.newsblocktitlefirstdemo
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  newsblocktitlefirstdemo: prismic.RichTextField;
 }
 
 /**
@@ -272,6 +272,16 @@ export type NewsBlockFirstSlice = prismic.SharedSlice<
  * Primary content in *NewsBlockSecond → Default → Primary*
  */
 export interface NewsBlockSecondSliceDefaultPrimary {
+  /**
+   * newsBlockTagSecond field in *NewsBlockSecond → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Renseigner le tag de catégorie de votre news
+   * - **API ID Path**: news_block_second.default.primary.newsblocktagsecond
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  newsblocktagsecond: prismic.KeyTextField;
+
   /**
    * newsBlockTitleSecond field in *NewsBlockSecond → Default → Primary*
    *
