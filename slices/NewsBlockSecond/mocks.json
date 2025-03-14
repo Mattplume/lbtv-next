@@ -17,6 +17,11 @@
 				"__TYPE__": "FieldContent",
 				"value": "carefully",
 				"type": "Text"
+			},
+			"newsblocktagsecond": {
+				"__TYPE__": "FieldContent",
+				"value": "each",
+				"type": "Text"
 			}
 		},
 		"items": []

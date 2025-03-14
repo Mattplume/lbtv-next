@@ -12,6 +12,13 @@
       "description": "Default",
       "imageUrl": "",
       "primary": {
+        "newsblocktagsecond": {
+          "type": "Text",
+          "config": {
+            "label": "newsBlockTagSecond",
+            "placeholder": "Renseigner le tag de catégorie de votre news"
+          }
+        },
         "newsblocktitlesecond": {
           "type": "Text",
           "config": {

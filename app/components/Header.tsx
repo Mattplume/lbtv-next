@@ -104,24 +104,6 @@ const Header: React.FC = () => {
 						<li className="mr-4">
 							{" "}
 							<Link
-								href="https://www.tiktok.com/@labaule.tv"
-								aria-label="tiktok-link"
-								target="blank"
-								rel="noopenner noreferrer"
-							>
-								<svg
-									width="20px"
-									height="20px"
-									viewBox="0 0 24 24"
-									className={`${commonStyle} fill-white hover:fill-[#ff0050] duration-300 ease-out`}
-								>
-									<path d="M19.589 6.686a4.793 4.793 0 0 1-3.77-4.245V2h-3.445v13.672a2.896 2.896 0 0 1-5.201 1.743l-.002-.001.002.001a2.895 2.895 0 0 1 3.183-4.51v-3.5a6.329 6.329 0 0 0-5.394 10.692 6.33 6.33 0 0 0 10.857-4.424V8.687a8.182 8.182 0 0 0 4.773 1.526V6.79a4.831 4.831 0 0 1-1.003-.104z" />
-								</svg>
-							</Link>
-						</li>
-						<li className="mr-4">
-							{" "}
-							<Link
 								href="https://www.instagram.com/labauletv/"
 								aria-label="instagram-link"
 								target="blank"
@@ -140,23 +122,57 @@ const Header: React.FC = () => {
 								</svg>
 							</Link>
 						</li>
+						<li className="mr-4">
+							{" "}
+							<Link
+								href="https://www.tiktok.com/@labaule.tv"
+								aria-label="tiktok-link"
+								target="blank"
+								rel="noopenner noreferrer"
+							>
+								<svg
+									width="20px"
+									height="20px"
+									viewBox="0 0 24 24"
+									className={`${commonStyle} fill-white hover:fill-[#00f2ea] duration-300 ease-out`}
+								>
+									<path d="M19.589 6.686a4.793 4.793 0 0 1-3.77-4.245V2h-3.445v13.672a2.896 2.896 0 0 1-5.201 1.743l-.002-.001.002.001a2.895 2.895 0 0 1 3.183-4.51v-3.5a6.329 6.329 0 0 0-5.394 10.692 6.33 6.33 0 0 0 10.857-4.424V8.687a8.182 8.182 0 0 0 4.773 1.526V6.79a4.831 4.831 0 0 1-1.003-.104z" />
+								</svg>
+							</Link>
+						</li>
 						<li>
 							{" "}
 							<Link
-								href="https://www.facebook.com/labauletv"
-								aria-label="linkedIn-link"
+								href="https://www.youtube.com/channel/UC3CPENzuaDChMBWOjDJTntg"
+								aria-label="youTube-link"
 								target="blank"
 								rel="noopenner noreferrer"
 							>
 								<svg
 									width="24px"
-									height="24px"
-									viewBox="0 0 76 76"
+									height="18px"
+									viewBox="0 0 313.23315 216.02286"
 									version="1.1"
-									baseProfile="full"
-									className={`${commonStyle} fill-white hover:fill-[#0072b1] duration-300 ease-out`}
+									id="svg5"
+									className={`${commonStyle} fill-white hover:fill-[#FF0000] duration-300 ease-out`}
 								>
-									<path d="M 17.4167,30.0833L 26.9167,30.0833L 26.9167,58.5833L 17.4167,58.5833L 17.4167,30.0833 Z M 31.6667,30.0833L 41.1667,30.0833L 41.1667,33.5574C 44.1836,31.7521 47.7589,30.0833 50.6667,30.0833C 57,30.0833 58.5833,36.4167 58.5833,36.4167L 58.5833,58.5833L 49.0833,58.5833L 49.0833,39.5833C 47.8558,35.9009 44.7251,36.0249 41.1667,39.2176L 41.1667,58.5833L 31.6667,58.5833L 31.6667,30.0833 Z M 22.1667,17.4167C 24.79,17.4167 26.9167,19.5433 26.9167,22.1667C 26.9167,24.79 24.79,26.9167 22.1667,26.9167C 19.5433,26.9167 17.4167,24.79 17.4167,22.1667C 17.4167,19.5433 19.5433,17.4167 22.1667,17.4167 Z " />
+									<defs id="defs2" />
+									<g id="layer1" transform="translate(-54.079375,-5.2758072)">
+										<path
+											d="m 210.53177,221.29866 c 0,0 98.12514,0 122.46443,-6.48069 13.70449,-3.6724 24.01093,-14.2575 27.62825,-27.32688 6.68807,-23.97854 6.68807,-74.41988 6.68807,-74.41988 0,0 0,-50.117297 -6.68807,-73.879819 C 357.00713,25.79798 346.70069,15.42887 332.9962,11.864515 308.65691,5.2758072 210.53177,5.2758072 210.53177,5.2758072 c 0,0 -97.9062,0 -122.135976,6.5887078 -13.485335,3.564355 -24.010529,13.933465 -27.847831,27.326876 -6.468588,23.762522 -6.468588,73.879819 -6.468588,73.879819 0,0 0,50.44134 6.468588,74.41988 3.837302,13.06938 14.362496,23.65448 27.847831,27.32688 24.229776,6.48069 122.135976,6.48069 122.135976,6.48069 z"
+											fill="#ffffff"
+											id="path1412"
+											className={`${commonStyle} fill-white hover:fill-[#FF0000] duration-300 ease-out`}
+											clipPath="none"
+										/>
+										<path
+											d="M 259.30109,113.28723 178.29251,67.382379 v 91.809711 z"
+											fill="#010c1a"
+											id="path1414"
+											// style="stroke-width:0.0208149"
+											clipPath="none"
+										/>
+									</g>
 								</svg>
 							</Link>
 						</li>

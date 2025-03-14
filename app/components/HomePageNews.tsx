@@ -5,17 +5,24 @@ type HomePageNewsCardProps = {
 	title: string;
 	description: string;
 	iframeUrl: string;
+	tag: string;
 };
 
 const HomePageNewsCard: FC<HomePageNewsCardProps> = ({
 	title,
 	description,
 	iframeUrl,
+	tag,
 }) => {
 	return (
 		<div className="card bg-background lg:bg-white flex flex-col md:shadow-cardShadow lg:rounded-xl xl:max-w-[760px] md:max-w-[620px] first-of-type:mb-4 lg:first-of-type:mb-0">
 			<div className="px-4 lg:p-4 order-2 lg:order-1">
-				<h5 className="text-lg mb-2 md:mb-0">{title}</h5>
+				<span className="text-xs font-semibold text-brandColor mb-2 md:mb-0">
+					{tag}
+				</span>
+				<h5 className="text-lg mb-2 md:mb-0 font-bold uppercase text-darkColor">
+					{title}
+				</h5>
 			</div>
 			<div className="mb-4 lg:mb-0 w-full lg:max-w-[760px] order-1 lg:order-2">
 				<div
@@ -50,6 +57,7 @@ const HomePageNews: FC<HomePageNewsProps> = ({
 				{newsBlockFirstSlice && (
 					<HomePageNewsCard
 						title={newsBlockFirstSlice.primary.newsblocktitlefirst ?? ""}
+						tag={newsBlockFirstSlice.primary.newsblocktagfirst ?? ""}
 						iframeUrl={newsBlockFirstSlice.primary.newsblockvideoiframe ?? ""}
 						description={
 							newsBlockFirstSlice.primary.newsblockdescriptionfirst ?? ""
@@ -59,6 +67,7 @@ const HomePageNews: FC<HomePageNewsProps> = ({
 				{newsBlockSecondSlice && (
 					<HomePageNewsCard
 						title={newsBlockSecondSlice.primary.newsblocktitlesecond ?? ""}
+						tag={newsBlockSecondSlice.primary.newsblocktagsecond ?? ""}
 						iframeUrl={newsBlockSecondSlice.primary.newsblockvideosecond ?? ""}
 						description={
 							newsBlockSecondSlice.primary.newsblockdescriptionsecond ?? ""
