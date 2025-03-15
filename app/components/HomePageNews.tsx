@@ -16,11 +16,11 @@ const HomePageNewsCard: FC<HomePageNewsCardProps> = ({
 }) => {
 	return (
 		<div className="card bg-background lg:bg-white flex flex-col md:shadow-cardShadow lg:rounded-xl xl:max-w-[760px] md:max-w-[620px] first-of-type:mb-4 lg:first-of-type:mb-0">
-			<div className="px-4 lg:p-4 order-2 lg:order-1">
-				<span className="text-xs font-semibold text-brandColor mb-2 md:mb-0">
+			<div className="flex flex-col px-4 lg:pt-4 order-2 lg:order-1">
+				<span className="text-[14px] font-semibold text-brandColor mb-1">
 					{tag}
 				</span>
-				<h5 className="text-lg mb-2 md:mb-0 font-bold uppercase text-darkColor">
+				<h5 className="text-[22px] mb-2 font-bold uppercase text-darkColor">
 					{title}
 				</h5>
 			</div>
