@@ -13,6 +13,9 @@ interface VideoCardProps {
 const VideoCard: FC<VideoCardProps> = ({ video, index, createdTime }) => {
 	const viewsInK = Math.round(video.views / 1000);
 	const videoLength = formatVideoDuration(video.length);
+	console.log("video IMG URL", video.thumbnails);
+	const optimizedImageUrl =
+		video.thumbnails.data[0].uri + "&width=400&height=225";
 
 	return (
 		<Link
@@ -29,10 +32,11 @@ const VideoCard: FC<VideoCardProps> = ({ video, index, createdTime }) => {
 			className="flex md:block md:bg-white bg-opacity-20 md:rounded-xl overflow-hidden md:hover:scale-105 md:hover:shadow-lg transition-all duration-500 ease-out"
 		>
 			{/* Conteneur pour l'image en ratio 16:9 */}
-			<div className="relative aspect-video rounded-md md:rounded-none h-[100%] md:h-auto max-w-[33%] w-[100%] min-w-[33%] md:w-full md:min-w-full">
+			<div className="relative aspect-video rounded-md md:rounded-none h-[100%] md:h-auto max-w-[240px] md:max-w-full w-full">
 				<Image
-					src={video.thumbnails.data[0].uri}
+					src={optimizedImageUrl}
 					alt="Aperçu vidéo"
+					unoptimized={true}
 					fill
 					className="object-cover relative rounded-md md:rounded-none"
 					sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
