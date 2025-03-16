@@ -17,7 +17,7 @@ export default function NewsPage() {
 	const viewsInK = Math.round(Number(views) / 1000);
 
 	return (
-		<div className="news-id-page fixed inset-0 z-[1000] flex flex-col lg:flex-row bg-white">
+		<div className="news-id-page fixed inset-0 z-[1000] flex flex-col lg:flex-row bg-white pb-8 md:pb-0">
 			{/* Bloc vidéo : s'adapte à l'écran avec conservation du ratio */}
 			<VideoHeader />
 			<div className="relative w-full lg:w-[80%] flex justify-center items-center">
