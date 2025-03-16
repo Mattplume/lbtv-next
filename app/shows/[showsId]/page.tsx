@@ -32,12 +32,14 @@ export default function NewsPage() {
 			</div>
 
 			{/* Bloc infos : toujours visible, s'adapte en mobile */}
-			<div className="news-id-infos w-full lg:w-[20%] bg-white text-grey-600 px-4 pt-8 flex flex-col">
-				<p className="text-gray-500 text-sm mb-2">{description}</p>
-				<div className="text-gray-400 text-sm flex flex-col space-y-2">
-					<span>📅 {new Date(createdTime).toLocaleDateString()}</span>
-					<span>⏱️ {videoLength}</span>
-					<span>👀 {viewsInK}k vues</span>
+			{/* Bloc infos */}
+			<div className="news-id-infos w-full lg:w-[25%] bg-white text-grey-600 px-4 pt-4 lg:pt-4 flex flex-col">
+				<div className="bg-background rounded-lg h-full md:mb-4 p-4">
+					<div className="text-darkColor text-sm flex items-center mb-1 font-semibold">
+						<span className="mr-2">{viewsInK}k vues</span>
+						<span>{createdTime}</span>
+					</div>
+					<p className="text-gray-600 text-sm mb-2">{description}</p>
 				</div>
 			</div>
 		</div>
