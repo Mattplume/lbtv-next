@@ -80,6 +80,7 @@ export default function NewsPage() {
 	};
 
 	const iframeSrc = extractIframeSrc(embedHtml);
+	console.log("iframeSrc", iframeSrc);
 
 	return (
 		<div className="news-id-page md:fixed inset-0 z-[1000] flex flex-col lg:flex-row bg-white">
