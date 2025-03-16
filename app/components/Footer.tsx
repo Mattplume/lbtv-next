@@ -4,7 +4,7 @@ export default function Footer() {
 	const commonStyle =
 		"text-nav-link flex h-full items-center text-white relative";
 	return (
-		<footer className="bg-darkColor text-white">
+		<footer className="app-footer bg-darkColor text-white">
 			{/* Conteneur de largeur max 1280px */}
 			<div className="mx-auto max-w-[1280px] px-4 py-8">
 				{/* Partie haute du footer : Réseaux et Rubriques */}
