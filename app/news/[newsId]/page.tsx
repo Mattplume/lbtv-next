@@ -83,7 +83,7 @@ export default function NewsPage() {
 	console.log("iframeSrc", iframeSrc);
 
 	return (
-		<div className="news-id-page md:fixed inset-0 z-[1000] flex flex-col lg:flex-row bg-white">
+		<div className="news-id-page md:fixed inset-0 z-[1000] flex flex-col lg:flex-row bg-white pb-8 md:pb-0">
 			{/* Bloc vidéo */}
 			<div className="w-full lg:w-[75%]">
 				<VideoHeader />
