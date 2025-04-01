@@ -2,17 +2,19 @@
 import { SearchParamsType, PagePropsType } from "@/app/types";
 import NewsPageClient from "./newsPageClient";
 
-interface NewsPageProps {
+export default function NewsPageServer({
+	searchParams,
+}: {
 	params: PagePropsType;
 	searchParams: SearchParamsType;
-}
+}) {
+	// Vérification et récupération des paramètres d'URL
+	const embedHtml = searchParams.embed_html ?? "";
+	const description = searchParams.description ?? "";
+	const views = searchParams.views ?? "0";
+	const createdTime = searchParams.created_time ?? "";
 
-export default function NewsPageServer({ searchParams }: NewsPageProps) {
-	const embedHtml = searchParams.embed_html || "";
-	const description = searchParams.description || "";
-	const views = searchParams.views || "0";
-	const createdTime = searchParams.created_time || "";
-
+	// Calcul du ratio naturel de la vidéo
 	const naturalRatio = getNaturalRatio(embedHtml);
 
 	return (
@@ -26,7 +28,7 @@ export default function NewsPageServer({ searchParams }: NewsPageProps) {
 	);
 }
 
-// Fonction pour extraire le ratio naturel de la vidéo
+// Fonction pour calculer le ratio d'affichage de la vidéo
 function getNaturalRatio(embedHtml: string): number {
 	const widthMatch = embedHtml.match(/width=["'](\d+)["']/);
 	const heightMatch = embedHtml.match(/height=["'](\d+)["']/);
@@ -37,5 +39,5 @@ function getNaturalRatio(embedHtml: string): number {
 			return width / height;
 		}
 	}
-	return 16 / 9; // Fallback à 16:9
+	return 16 / 9; // Fallback
 }
