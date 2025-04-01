@@ -1,28 +1,11 @@
 // app/news/[newsId]/page.tsx
+import { SearchParamsType, PagePropsType } from "@/app/types";
 import NewsPageClient from "./newsPageClient";
 
-type PageProps = {
-	params: { newsId: string } | Promise<{ newsId: string }>;
-	searchParams: { [key: string]: string | string[] | undefined };
-};
-
-function getNaturalRatio(embedHtml: string): number {
-	const widthMatch = embedHtml.match(/width=["'](\d+)["']/);
-	const heightMatch = embedHtml.match(/height=["'](\d+)["']/);
-	if (widthMatch && heightMatch) {
-		const width = parseInt(widthMatch[1], 10);
-		const height = parseInt(heightMatch[1], 10);
-		if (width > 0 && height > 0) {
-			return width / height;
-		}
-	}
-	return 16 / 9; // Fallback à 16:9
-}
-
-export default async function NewsPageServer({
-	params,
-	searchParams,
-}: PageProps) {
+export default async function NewsPageServer<
+	T extends SearchParamsType,
+	U extends PagePropsType,
+>({ params, searchParams }: { params: U["params"]; searchParams: T }) {
 	// S'assurer que params est résolu (pour satisfaire la contrainte de type)
 	await Promise.resolve(params);
 
@@ -50,4 +33,17 @@ export default async function NewsPageServer({
 			createdTime={createdTime}
 		/>
 	);
+}
+
+function getNaturalRatio(embedHtml: string): number {
+	const widthMatch = embedHtml.match(/width=["'](\d+)["']/);
+	const heightMatch = embedHtml.match(/height=["'](\d+)["']/);
+	if (widthMatch && heightMatch) {
+		const width = parseInt(widthMatch[1], 10);
+		const height = parseInt(heightMatch[1], 10);
+		if (width > 0 && height > 0) {
+			return width / height;
+		}
+	}
+	return 16 / 9; // Fallback à 16:9
 }
