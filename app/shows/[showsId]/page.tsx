@@ -1,7 +1,8 @@
+// app/news/[newsId]/page.tsx
 import ShowPageClient from "./showPageClient";
 
 type PageProps = {
-	params: { newsId: string };
+	params: { newsId: string } | Promise<{ newsId: string }>;
 	searchParams: { [key: string]: string | string[] | undefined };
 };
 
@@ -15,10 +16,16 @@ function getNaturalRatio(embedHtml: string): number {
 			return width / height;
 		}
 	}
-	return 16 / 9; // Fallback à 16:9 si non disponible
+	return 16 / 9; // Fallback à 16:9
 }
 
-export default async function ShowsPageServer({ searchParams }: PageProps) {
+export default async function ShowPageServer({
+	params,
+	searchParams,
+}: PageProps) {
+	// S'assurer que params est résolu (pour satisfaire la contrainte de type)
+	await Promise.resolve(params);
+
 	const embedHtml =
 		typeof searchParams.embed_html === "string" ? searchParams.embed_html : "";
 	const description =
