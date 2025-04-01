@@ -2,30 +2,16 @@
 import { SearchParamsType, PagePropsType } from "@/app/types";
 import NewsPageClient from "./newsPageClient";
 
-type PageProps = {
+interface NewsPageProps {
 	params: PagePropsType;
 	searchParams: SearchParamsType;
-};
+}
 
-export default async function NewsPageServer({
-	params,
-	searchParams,
-}: PageProps) {
-	// S'assurer que params est résolu (pour satisfaire la contrainte de type)
-	await Promise.resolve(params);
-
-	const embedHtml =
-		typeof searchParams.embed_html === "string" ? searchParams.embed_html : "";
-	const description =
-		typeof searchParams.description === "string"
-			? searchParams.description
-			: "";
-	const views =
-		typeof searchParams.views === "string" ? searchParams.views : "0";
-	const createdTime =
-		typeof searchParams.created_time === "string"
-			? searchParams.created_time
-			: "";
+export default function NewsPageServer({ searchParams }: NewsPageProps) {
+	const embedHtml = searchParams.embed_html || "";
+	const description = searchParams.description || "";
+	const views = searchParams.views || "0";
+	const createdTime = searchParams.created_time || "";
 
 	const naturalRatio = getNaturalRatio(embedHtml);
 
@@ -40,6 +26,7 @@ export default async function NewsPageServer({
 	);
 }
 
+// Fonction pour extraire le ratio naturel de la vidéo
 function getNaturalRatio(embedHtml: string): number {
 	const widthMatch = embedHtml.match(/width=["'](\d+)["']/);
 	const heightMatch = embedHtml.match(/height=["'](\d+)["']/);
