@@ -1,6 +1,11 @@
 // app/news/[newsId]/page.tsx
 
-import NewsPage from "./newsPageClient";
+import NewsPageClient from "./newsPageClient";
+
+type PageProps = {
+	params: { newsId: string };
+	searchParams: { [key: string]: string | string[] | undefined };
+};
 
 function getNaturalRatio(embedHtml: string): number {
 	const widthMatch = embedHtml.match(/width=["'](\d+)["']/);
@@ -12,16 +17,10 @@ function getNaturalRatio(embedHtml: string): number {
 			return width / height;
 		}
 	}
-	return 16 / 9; // Fallback si les attributs ne sont pas disponibles
+	return 16 / 9; // Fallback à 16:9 si non disponible
 }
 
-export default async function NewsPageServer({
-	searchParams,
-}: {
-	params: { newsId: string };
-	searchParams: { [key: string]: string | string[] | undefined };
-}) {
-	// Récupération des données depuis la query string
+export default async function NewsPageServer({ searchParams }: PageProps) {
 	const embedHtml =
 		typeof searchParams.embed_html === "string" ? searchParams.embed_html : "";
 	const description =
@@ -35,12 +34,10 @@ export default async function NewsPageServer({
 			? searchParams.created_time
 			: "";
 
-	// Calcul du ratio naturel basé sur l'embed HTML
 	const naturalRatio = getNaturalRatio(embedHtml);
 
-	// Transmission des props au composant client
 	return (
-		<NewsPage
+		<NewsPageClient
 			embedHtml={embedHtml}
 			naturalRatio={naturalRatio}
 			description={description}
