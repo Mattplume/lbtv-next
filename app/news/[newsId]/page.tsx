@@ -2,13 +2,12 @@
 import { SearchParamsType, PagePropsType } from "@/app/types";
 import NewsPageClient from "./newsPageClient";
 
-export default async function NewsPageServer<
-	T extends SearchParamsType,
-	U extends PagePropsType,
->({ params, searchParams }: { params: U["params"]; searchParams: T }) {
-	// S'assurer que params est résolu (pour satisfaire la contrainte de type)
-	await Promise.resolve(params);
+type PageProps = {
+	params: PagePropsType["params"];
+	searchParams: SearchParamsType;
+};
 
+export default async function NewsPageServer({ searchParams }: PageProps) {
 	const embedHtml =
 		typeof searchParams.embed_html === "string" ? searchParams.embed_html : "";
 	const description =
