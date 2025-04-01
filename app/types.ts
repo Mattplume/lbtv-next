@@ -17,7 +17,7 @@ export type SearchParamsType = {
 };
 
 export type PagePropsType = {
-  params: { newsId: string };
+  newsId: string;
 };
 
  type VideoThumbail = {
