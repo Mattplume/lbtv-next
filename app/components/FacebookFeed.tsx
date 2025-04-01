@@ -5,6 +5,7 @@ type FeedProps = {
 };
 
 const Feed: FC<FeedProps> = ({ src }) => {
+	console.log("Chargement du feed Facebook avec l'URL :", src);
 	return (
 		<div className="feed-card bg-white p-6 rounded-xl md:shadow-cardShadow max-h-fit">
 			<iframe
