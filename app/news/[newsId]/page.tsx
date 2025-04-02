@@ -1,33 +1,37 @@
 // app/news/[newsId]/page.tsx
 import NewsPageClient from "./newsPageClient";
-import { SearchParamsType } from "@/app/types";
+import { PagePropsType, SearchParamsType } from "@/app/types";
 
-// Nous déclarons ici que params est une promesse renvoyant un objet { newsId: string }
+type PageProps = {
+	params: Promise<PagePropsType>;
+	searchParams: Promise<SearchParamsType>;
+};
+
 export default async function NewsPageServer({
 	params,
 	searchParams,
-}: {
-	params: Promise<{ newsId: string }>;
-	searchParams: SearchParamsType;
-}) {
-	// On résout params pour obtenir l'objet
-	await params;
+}: PageProps) {
+	// Résoudre params et searchParams pour obtenir des objets
+	await Promise.resolve(params);
+	const resolvedSearchParams = await Promise.resolve(searchParams);
 
-	// Extraction des données depuis searchParams
 	const embedHtml =
-		typeof searchParams.embed_html === "string" ? searchParams.embed_html : "";
+		typeof resolvedSearchParams.embed_html === "string"
+			? resolvedSearchParams.embed_html
+			: "";
 	const description =
-		typeof searchParams.description === "string"
-			? searchParams.description
+		typeof resolvedSearchParams.description === "string"
+			? resolvedSearchParams.description
 			: "";
 	const views =
-		typeof searchParams.views === "string" ? searchParams.views : "0";
+		typeof resolvedSearchParams.views === "string"
+			? resolvedSearchParams.views
+			: "0";
 	const createdTime =
-		typeof searchParams.created_time === "string"
-			? searchParams.created_time
+		typeof resolvedSearchParams.created_time === "string"
+			? resolvedSearchParams.created_time
 			: "";
 
-	// Calcul du ratio naturel à partir de embedHtml
 	const naturalRatio = getNaturalRatio(embedHtml);
 
 	return (
@@ -51,5 +55,5 @@ function getNaturalRatio(embedHtml: string): number {
 			return width / height;
 		}
 	}
-	return 16 / 9; // Fallback à 16:9 si non défini
+	return 16 / 9; // Fallback à 16:9
 }
