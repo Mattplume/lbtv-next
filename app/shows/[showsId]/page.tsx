@@ -2,26 +2,19 @@
 import { SearchParamsType, PagePropsType } from "@/app/types";
 import ShowPageClient from "./showPageClient";
 
-export default async function ShowPageServer<
-	T extends SearchParamsType,
-	U extends PagePropsType,
->({ params, searchParams }: { params: U["params"]; searchParams: T }) {
-	// S'assurer que params est résolu (pour satisfaire la contrainte de type)
-	await Promise.resolve(params);
+export default function ShowPageServer({
+	searchParams,
+}: {
+	params: PagePropsType;
+	searchParams: SearchParamsType;
+}) {
+	// Vérification et récupération des paramètres d'URL
+	const embedHtml = searchParams.embed_html ?? "";
+	const description = searchParams.description ?? "";
+	const views = searchParams.views ?? "0";
+	const createdTime = searchParams.created_time ?? "";
 
-	const embedHtml =
-		typeof searchParams.embed_html === "string" ? searchParams.embed_html : "";
-	const description =
-		typeof searchParams.description === "string"
-			? searchParams.description
-			: "";
-	const views =
-		typeof searchParams.views === "string" ? searchParams.views : "0";
-	const createdTime =
-		typeof searchParams.created_time === "string"
-			? searchParams.created_time
-			: "";
-
+	// Calcul du ratio naturel de la vidéo
 	const naturalRatio = getNaturalRatio(embedHtml);
 
 	return (
@@ -35,6 +28,7 @@ export default async function ShowPageServer<
 	);
 }
 
+// Fonction pour calculer le ratio d'affichage de la vidéo
 function getNaturalRatio(embedHtml: string): number {
 	const widthMatch = embedHtml.match(/width=["'](\d+)["']/);
 	const heightMatch = embedHtml.match(/height=["'](\d+)["']/);
@@ -45,5 +39,5 @@ function getNaturalRatio(embedHtml: string): number {
 			return width / height;
 		}
 	}
-	return 16 / 9; // Fallback à 16:9
+	return 16 / 9; // Fallback
 }
