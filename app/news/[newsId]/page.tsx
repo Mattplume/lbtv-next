@@ -11,7 +11,7 @@ export default async function NewsPageServer({
 	searchParams: SearchParamsType;
 }) {
 	// On résout params pour obtenir l'objet
-	const resolvedParams = await params;
+	await params;
 
 	// Extraction des données depuis searchParams
 	const embedHtml =
