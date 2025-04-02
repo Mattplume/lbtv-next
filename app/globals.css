@@ -115,3 +115,10 @@ h5 {
 		padding-bottom: 0 !important;
 	}
 }
+
+.video-iframe {
+	width: 100%;
+	height: 100%;
+	/* Essaye de forcer un "contain" avec une transformation si nécessaire */
+	/* Note : object-fit n'est pas toujours supporté sur les iframes */
+}

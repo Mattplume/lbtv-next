@@ -8,6 +8,17 @@ export interface VideoNews {
   embed_html: string;
 }
 
+export type PagePropsType = {
+  newsId: string;
+};
+
+export type SearchParamsType = {
+  embed_html?: string;
+  description?: string;
+  views?: string;
+  created_time?: string;
+};
+
  type VideoThumbail = {
    data: VideoData[];
  }
