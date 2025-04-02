@@ -1,19 +1,19 @@
 // app/news/[newsId]/page.tsx
 import NewsPageClient from "./newsPageClient";
-import { PagePropsType, SearchParamsType } from "@/app/types";
+import { SearchParamsType } from "@/app/types";
 
-type PageProps = {
-	params: PagePropsType | Promise<PagePropsType>;
-	searchParams: SearchParamsType;
-};
-
+// Nous déclarons ici que params est une promesse renvoyant un objet { newsId: string }
 export default async function NewsPageServer({
 	params,
 	searchParams,
-}: PageProps) {
-	// On s'assure de résoudre params (ce qui fonctionne que ce soit un objet ou une promesse)
-	await Promise.resolve(params);
+}: {
+	params: Promise<{ newsId: string }>;
+	searchParams: SearchParamsType;
+}) {
+	// On résout params pour obtenir l'objet
+	const resolvedParams = await params;
 
+	// Extraction des données depuis searchParams
 	const embedHtml =
 		typeof searchParams.embed_html === "string" ? searchParams.embed_html : "";
 	const description =
@@ -27,6 +27,7 @@ export default async function NewsPageServer({
 			? searchParams.created_time
 			: "";
 
+	// Calcul du ratio naturel à partir de embedHtml
 	const naturalRatio = getNaturalRatio(embedHtml);
 
 	return (
@@ -50,5 +51,5 @@ function getNaturalRatio(embedHtml: string): number {
 			return width / height;
 		}
 	}
-	return 16 / 9; // Fallback à 16:9
+	return 16 / 9; // Fallback à 16:9 si non défini
 }
