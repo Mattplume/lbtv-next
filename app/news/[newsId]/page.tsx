@@ -1,20 +1,32 @@
 // app/news/[newsId]/page.tsx
-import { SearchParamsType, PagePropsType } from "@/app/types";
 import NewsPageClient from "./newsPageClient";
+import { PagePropsType, SearchParamsType } from "@/app/types";
 
-export default function NewsPageServer({
-	searchParams,
-}: {
-	params: PagePropsType;
+type PageProps = {
+	params: PagePropsType | Promise<PagePropsType>;
 	searchParams: SearchParamsType;
-}) {
-	// Vérification et récupération des paramètres d'URL
-	const embedHtml = searchParams.embed_html ?? "";
-	const description = searchParams.description ?? "";
-	const views = searchParams.views ?? "0";
-	const createdTime = searchParams.created_time ?? "";
+};
 
-	// Calcul du ratio naturel de la vidéo
+export default async function NewsPageServer({
+	params,
+	searchParams,
+}: PageProps) {
+	// On s'assure de résoudre params (ce qui fonctionne que ce soit un objet ou une promesse)
+	await Promise.resolve(params);
+
+	const embedHtml =
+		typeof searchParams.embed_html === "string" ? searchParams.embed_html : "";
+	const description =
+		typeof searchParams.description === "string"
+			? searchParams.description
+			: "";
+	const views =
+		typeof searchParams.views === "string" ? searchParams.views : "0";
+	const createdTime =
+		typeof searchParams.created_time === "string"
+			? searchParams.created_time
+			: "";
+
 	const naturalRatio = getNaturalRatio(embedHtml);
 
 	return (
@@ -28,7 +40,6 @@ export default function NewsPageServer({
 	);
 }
 
-// Fonction pour calculer le ratio d'affichage de la vidéo
 function getNaturalRatio(embedHtml: string): number {
 	const widthMatch = embedHtml.match(/width=["'](\d+)["']/);
 	const heightMatch = embedHtml.match(/height=["'](\d+)["']/);
@@ -39,5 +50,5 @@ function getNaturalRatio(embedHtml: string): number {
 			return width / height;
 		}
 	}
-	return 16 / 9; // Fallback
+	return 16 / 9; // Fallback à 16:9
 }
