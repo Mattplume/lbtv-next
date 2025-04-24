@@ -3,6 +3,7 @@ import { DM_Sans } from "next/font/google";
 import MainContainer from "@/app/components/MainContainer";
 import ResponsiveHeader from "./components/ResponsiveHeader";
 import Footer from "./components/Footer";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 const DMSans = DM_Sans({
@@ -46,6 +47,7 @@ export default function RootLayout({
         <ResponsiveHeader />
         <MainContainer>{children}</MainContainer>
         <Footer />
+        <Analytics />
       </body>
     </html>
   );
