@@ -10,7 +10,11 @@ let tokenExpiration: number | null = null;
  * Vérifie si le token est encore valide.
  */
 function isTokenValid(): boolean {
-  return cachedToken !== null && tokenExpiration !== null && Date.now() < tokenExpiration;
+  return (
+    cachedToken !== null &&
+    tokenExpiration !== null &&
+    Date.now() < tokenExpiration
+  );
 }
 
 /**
@@ -23,11 +27,12 @@ async function fetchLongLivedToken(): Promise<void> {
   const url = `${FACEBOOK_API_BASE}/oauth/access_token?grant_type=fb_exchange_token&client_id=${APP_ID}&client_secret=${APP_SECRET}&fb_exchange_token=${cachedToken}`;
   const res = await fetch(url);
   const data = await res.json();
-  
+
   if (!data.access_token || !data.expires_in) {
+    console.log("data", data);
     throw new Error("Impossible d'obtenir le token longue durée.");
   }
-  
+
   cachedToken = data.access_token;
   tokenExpiration = Date.now() + data.expires_in * 1000; // Conversion en millisecondes
 }
@@ -55,10 +60,14 @@ interface NextFetchOptions extends RequestInit {
   };
 }
 
-export async function getFacebookVideos(playlistId: string, afterCursor: string = "") {
+export async function getFacebookVideos(
+  playlistId: string,
+  afterCursor: string = ""
+) {
   const token = await getFacebookToken();
   const params = new URLSearchParams({
-    fields: "id,title,description,length,embed_html,thumbnails,created_time,views",
+    fields:
+      "id,title,description,length,embed_html,thumbnails,created_time,views",
     access_token: token,
     limit: "30",
   });
@@ -66,7 +75,7 @@ export async function getFacebookVideos(playlistId: string, afterCursor: string 
     params.append("after", afterCursor);
   }
   const url = `${FACEBOOK_API_BASE}/${playlistId}/videos?${params.toString()}`;
-  
+
   const options: NextFetchOptions = { next: { revalidate: 3600 } };
   const res = await fetch(url, options);
   if (!res.ok) {
@@ -74,4 +83,3 @@ export async function getFacebookVideos(playlistId: string, afterCursor: string 
   }
   return res.json();
 }
-
