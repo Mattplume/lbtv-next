@@ -30,7 +30,6 @@ export default function VideosListClient({
       try {
         const res = await fetch(`/api/videos/${playlistId}`);
         if (!res.ok) {
-          console.log("res", res);
           setErrorMessage("Erreur lors du chargement initial des vidéos");
           return;
         }
