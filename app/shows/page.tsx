@@ -1,5 +1,12 @@
 import PageHeader from "../components/PageHeader";
 import VideosListClient from "../components/VideosLIstClient";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Émissions La Baule TV - Nos programmes et reportages",
+  description:
+    "Découvrez nos émissions et reportages exclusifs sur La Baule : interviews, documentaires, magazines et toute l'actualité en vidéo.",
+};
 
 export default function ShowsPage() {
   const pageHeader = {
