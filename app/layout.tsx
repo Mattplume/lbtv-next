@@ -43,6 +43,24 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              name: "La Baule TV",
+              url: "https://labaule.tv",
+              potentialAction: {
+                "@type": "SearchAction",
+                target: "https://labaule.tv/search?q={search_term_string}",
+                "query-input": "required name=search_term_string",
+              },
+            }),
+          }}
+        />
+      </head>
       <body className={DMSans.className}>
         <ResponsiveHeader />
         <MainContainer>{children}</MainContainer>
