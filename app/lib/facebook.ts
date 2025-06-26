@@ -10,6 +10,7 @@ let tokenExpiration: number | null = null;
  * Vérifie si le token est encore valide.
  */
 function isTokenValid(): boolean {
+  console.log("token is valid or not");
   return (
     cachedToken !== null &&
     tokenExpiration !== null &&
