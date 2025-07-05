@@ -1,48 +1,54 @@
 const FACEBOOK_API_BASE = "https://graph.facebook.com/v15.0";
-const APP_ID = process.env.FB_APP_ID;
-const APP_SECRET = process.env.FB_APP_SECRET;
 
 // On initialise le token avec la variable d'environnement, s'il existe.
 let cachedToken: string | null = process.env.FB_PAGE_ACCESS_TOKEN || null;
 let tokenExpiration: number | null = null;
 
 /**
- * Vérifie si le token est encore valide.
+ * Rafraîchit le token longue durée en utilisant le bon endpoint Threads/Facebook.
  */
-function isTokenValid(): boolean {
-  return (
-    cachedToken !== null &&
-    tokenExpiration !== null &&
-    Date.now() < tokenExpiration
-  );
-}
-
-/**
- * Renouvelle le token longue durée en utilisant le token actuel.
- */
-async function fetchLongLivedToken(): Promise<void> {
+async function refreshLongLivedToken(): Promise<void> {
   if (!cachedToken) {
     throw new Error("Aucun token d'accès de page disponible.");
   }
-  const url = `${FACEBOOK_API_BASE}/oauth/access_token?grant_type=fb_exchange_token&client_id=${APP_ID}&client_secret=${APP_SECRET}&fb_exchange_token=${cachedToken}`;
+  const url = `https://graph.threads.net/refresh_access_token?grant_type=th_refresh_token&access_token=${cachedToken}`;
   const res = await fetch(url);
   const data = await res.json();
 
   if (!data.access_token || !data.expires_in) {
     console.log("data", data);
-    throw new Error("Impossible d'obtenir le token longue durée.");
+    throw new Error("Impossible de rafraîchir le token longue durée.");
   }
 
   cachedToken = data.access_token;
-  tokenExpiration = Date.now() + data.expires_in * 1000; // Conversion en millisecondes
+  tokenExpiration = Date.now() + data.expires_in * 1000;
+  console.log(
+    "Token longue durée rafraîchi automatiquement. Nouvelle expiration :",
+    new Date(tokenExpiration)
+  );
 }
 
 /**
  * Retourne un token valide en renouvelant le token si nécessaire.
+ * Rafraîchit automatiquement si le token expire dans moins de 7 jours.
  */
 async function getFacebookToken(): Promise<string> {
-  if (!isTokenValid()) {
-    await fetchLongLivedToken();
+  const SEVEN_DAYS = 7 * 24 * 3600 * 1000;
+  if (!cachedToken || !tokenExpiration) {
+    throw new Error(
+      "Aucun token longue durée valide. Intervention humaine requise."
+    );
+  }
+  if (Date.now() >= tokenExpiration) {
+    throw new Error(
+      "Token longue durée expiré. Intervention humaine requise pour en générer un nouveau."
+    );
+  }
+  if (tokenExpiration - Date.now() < SEVEN_DAYS) {
+    console.log(
+      "Token longue durée bientôt expiré, rafraîchissement proactif..."
+    );
+    await refreshLongLivedToken();
   }
   return cachedToken!;
 }
