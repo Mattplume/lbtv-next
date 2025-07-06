@@ -19,14 +19,14 @@ export type SearchParamsType = {
   created_time?: string;
 };
 
- type VideoThumbail = {
-   data: VideoData[];
- }
+type VideoThumbail = {
+  data: VideoData[];
+};
 
 type VideoData = {
   uri: string;
-}
- 
+};
+
 export interface PageHeaderInfos {
   title: string;
   description: string;
@@ -40,4 +40,33 @@ export interface DerbyMagazineInfos {
 type Poster = {
   url: string;
   alt: string;
+};
+
+// Types pour l'API route de refresh du token Facebook
+export interface FacebookTokenResponse {
+  access_token: string;
+  token_type: string;
+  expires_in: number;
+}
+
+export interface VercelEnvVar {
+  id: string;
+  key: string;
+  value: string;
+  target: string[];
+}
+
+export interface VercelEnvResponse {
+  envs: VercelEnvVar[];
+}
+
+export interface RefreshTokenResponse {
+  success: boolean;
+  token: string;
+  expiresAt: string;
+  message: string;
+}
+
+export interface ErrorResponse {
+  error: string;
 }

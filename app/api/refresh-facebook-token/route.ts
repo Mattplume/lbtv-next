@@ -1,4 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
+import {
+  FacebookTokenResponse,
+  VercelEnvVar,
+  VercelEnvResponse,
+  RefreshTokenResponse,
+  ErrorResponse,
+} from "../../types";
 
 const VERCEL_TOKEN = process.env.VERCEL_TOKEN;
 const PROJECT_ID = process.env.VERCEL_PROJECT_ID;
@@ -17,7 +24,7 @@ async function refreshLongLivedToken(): Promise<{
   }
   const url = `https://graph.threads.net/refresh_access_token?grant_type=th_refresh_token&access_token=${cachedToken}`;
   const res = await fetch(url);
-  const data = await res.json();
+  const data: FacebookTokenResponse = await res.json();
   if (!data.access_token || !data.expires_in) {
     throw new Error("Impossible de rafraîchir le token longue durée.");
   }
@@ -26,13 +33,6 @@ async function refreshLongLivedToken(): Promise<{
   return { token: cachedToken!, expires: tokenExpiration! };
 }
 
-type VercelEnvVar = {
-  id: string;
-  key: string;
-  value: string;
-  target: string[];
-};
-
 async function getEnvVarId() {
   const res = await fetch(
     `https://api.vercel.com/v10/projects/${PROJECT_ID}/env`,
@@ -40,10 +40,8 @@ async function getEnvVarId() {
       headers: { Authorization: `Bearer ${VERCEL_TOKEN}` },
     }
   );
-  const data = await res.json();
-  const envVar = (data.envs as VercelEnvVar[]).find(
-    (e) => e.key === ENV_VAR_NAME
-  );
+  const data: VercelEnvResponse = await res.json();
+  const envVar = data.envs.find((e) => e.key === ENV_VAR_NAME);
   return envVar?.id;
 }
 
@@ -118,7 +116,9 @@ export async function GET(req: NextRequest) {
       message:
         "Token rafraîchi et variable d'environnement mise à jour sur Vercel. Pense à redeployer pour prise en compte immédiate.",
     });
-  } catch (e: any) {
-    return NextResponse.json({ error: e.message }, { status: 500 });
+  } catch (e: unknown) {
+    const errorMessage =
+      e instanceof Error ? e.message : "Une erreur inconnue est survenue";
+    return NextResponse.json({ error: errorMessage }, { status: 500 });
   }
 }
