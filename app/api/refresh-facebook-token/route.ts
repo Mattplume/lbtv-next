@@ -1,31 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
-import { FacebookTokenResponse, VercelEnvResponse } from "../../types";
+import { refreshLongLivedToken } from "@/app/lib/facebook";
+import { VercelEnvResponse } from "../../types";
 
 const VERCEL_TOKEN = process.env.VERCEL_TOKEN;
 const PROJECT_ID = process.env.VERCEL_PROJECT_ID;
 const ENV_VAR_NAME = "FB_PAGE_ACCESS_TOKEN";
 const REFRESH_SECRET = process.env.REFRESH_SECRET; // à définir dans tes variables d'env
-
-let cachedToken: string | null = process.env.FB_PAGE_ACCESS_TOKEN || null;
-let tokenExpiration: number | null = null;
-
-async function refreshLongLivedToken(): Promise<{
-  token: string;
-  expires: number;
-}> {
-  if (!cachedToken) {
-    throw new Error("Aucun token d'accès de page disponible.");
-  }
-  const url = `https://graph.threads.net/refresh_access_token?grant_type=th_refresh_token&access_token=${cachedToken}`;
-  const res = await fetch(url);
-  const data: FacebookTokenResponse = await res.json();
-  if (!data.access_token || !data.expires_in) {
-    throw new Error("Impossible de rafraîchir le token longue durée.");
-  }
-  cachedToken = data.access_token;
-  tokenExpiration = Date.now() + data.expires_in * 1000;
-  return { token: cachedToken!, expires: tokenExpiration! };
-}
 
 async function getEnvVarId() {
   const res = await fetch(
@@ -81,7 +61,6 @@ async function triggerVercelRedeploy(
     body: JSON.stringify({
       project: PROJECT_ID,
       target,
-      // Tu peux ajouter d'autres options ici si besoin
     }),
   });
   if (!res.ok) throw new Error("Erreur lors du redeploy Vercel");
@@ -97,11 +76,18 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
   try {
-    // 1. Rafraîchir le token longue durée
-    const { token, expires } = await refreshLongLivedToken();
-    // 2. Mettre à jour la variable d'env sur Vercel
+    // 1. Lire le token actuel depuis l'env
+    const currentToken = process.env.FB_PAGE_ACCESS_TOKEN;
+    if (!currentToken) {
+      throw new Error(
+        "Aucun token Facebook trouvé dans les variables d'environnement"
+      );
+    }
+    // 2. Rafraîchir le token longue durée
+    const { token, expires } = await refreshLongLivedToken(currentToken);
+    // 3. Mettre à jour la variable d'env sur Vercel
     await updateEnvVar(token);
-    // 3. Déclencher un redeploy (optionnel)
+    // 4. Déclencher un redeploy (optionnel)
     await triggerVercelRedeploy();
     return NextResponse.json({
       success: true,
@@ -113,6 +99,7 @@ export async function GET(req: NextRequest) {
   } catch (e: unknown) {
     const errorMessage =
       e instanceof Error ? e.message : "Une erreur inconnue est survenue";
+    console.error("Erreur dans l'API refresh-facebook-token:", errorMessage);
     return NextResponse.json({ error: errorMessage }, { status: 500 });
   }
 }
