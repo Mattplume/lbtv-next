@@ -12,7 +12,7 @@ export default function ShowsPage() {
   const pageHeader = {
     title: "Émissions",
     description:
-      "Retrouvez toutes les émissions de La Baule TV : Destination La Baule, Les baulois dans les monde, Salut les baulois, La minute Bauloise, et bien d'autres encore !",
+      "Retrouvez toutes les émissions de La Baule TV : Destination La Baule, La Baule en bref, Salut les baulois, La minute Bauloise, et bien d'autres encore !",
   };
 
   return (
