@@ -36,8 +36,20 @@ async function refreshLongLivedToken(): Promise<void> {
 async function getFacebookToken(): Promise<string> {
   const SEVEN_DAYS = 7 * 24 * 3600 * 1000;
 
+  // Debug: afficher l'état du token
+  console.log("Debug - cachedToken exists:", !!cachedToken);
+  console.log("Debug - tokenExpiration:", tokenExpiration);
+  console.log(
+    "Debug - FB_PAGE_ACCESS_TOKEN env:",
+    !!process.env.FB_PAGE_ACCESS_TOKEN
+  );
+
   // Si pas de token du tout, erreur
   if (!cachedToken) {
+    console.error("ERREUR: Aucun token Facebook configuré");
+    console.error(
+      "Vérifiez que FB_PAGE_ACCESS_TOKEN est configurée sur Vercel"
+    );
     throw new Error(
       "Aucun token longue durée valide. Intervention humaine requise."
     );
