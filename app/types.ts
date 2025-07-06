@@ -1,7 +1,11 @@
 export interface VideoNews {
   id: string;
   description: string;
-  thumbnails: VideoThumbail;
+  thumbnails: {
+    data: {
+      uri: string;
+    }[];
+  };
   views: number;
   length: number;
   created_time: string;
@@ -19,28 +23,18 @@ export type SearchParamsType = {
   created_time?: string;
 };
 
-type VideoThumbail = {
-  data: VideoData[];
-};
-
-type VideoData = {
-  uri: string;
-};
-
 export interface PageHeaderInfos {
   title: string;
   description: string;
 }
 
 export interface DerbyMagazineInfos {
-  poster: Poster;
+  poster: {
+    url: string;
+    alt: string;
+  };
   url: string;
 }
-
-type Poster = {
-  url: string;
-  alt: string;
-};
 
 // Types pour l'API route de refresh du token Facebook
 export interface FacebookTokenResponse {
@@ -49,24 +43,11 @@ export interface FacebookTokenResponse {
   expires_in: number;
 }
 
-export interface VercelEnvVar {
-  id: string;
-  key: string;
-  value: string;
-  target: string[];
-}
-
 export interface VercelEnvResponse {
-  envs: VercelEnvVar[];
-}
-
-export interface RefreshTokenResponse {
-  success: boolean;
-  token: string;
-  expiresAt: string;
-  message: string;
-}
-
-export interface ErrorResponse {
-  error: string;
+  envs: {
+    id: string;
+    key: string;
+    value: string;
+    target: string[];
+  }[];
 }

@@ -3,6 +3,7 @@ const FACEBOOK_API_BASE = "https://graph.facebook.com/v15.0";
 // On initialise le token avec la variable d'environnement, s'il existe.
 let cachedToken: string | null = process.env.FB_PAGE_ACCESS_TOKEN || null;
 let tokenExpiration: number | null = null;
+let hasLoggedInitialToken = false; // Pour éviter les logs répétitifs
 
 /**
  * Rafraîchit le token longue durée en utilisant le bon endpoint Threads/Facebook.
@@ -34,22 +35,40 @@ async function refreshLongLivedToken(): Promise<void> {
  */
 async function getFacebookToken(): Promise<string> {
   const SEVEN_DAYS = 7 * 24 * 3600 * 1000;
-  if (!cachedToken || !tokenExpiration) {
+
+  // Si pas de token du tout, erreur
+  if (!cachedToken) {
     throw new Error(
       "Aucun token longue durée valide. Intervention humaine requise."
     );
   }
+
+  // Si on a un token mais pas de date d'expiration, on l'utilise (premier démarrage)
+  if (!tokenExpiration) {
+    if (!hasLoggedInitialToken) {
+      console.log(
+        "Token initial détecté, utilisation sans date d'expiration (normal au premier démarrage)"
+      );
+      hasLoggedInitialToken = true;
+    }
+    return cachedToken;
+  }
+
+  // Si le token est expiré, erreur
   if (Date.now() >= tokenExpiration) {
     throw new Error(
       "Token longue durée expiré. Intervention humaine requise pour en générer un nouveau."
     );
   }
+
+  // Si le token expire bientôt, on le rafraîchit
   if (tokenExpiration - Date.now() < SEVEN_DAYS) {
     console.log(
       "Token longue durée bientôt expiré, rafraîchissement proactif..."
     );
     await refreshLongLivedToken();
   }
+
   return cachedToken!;
 }
 

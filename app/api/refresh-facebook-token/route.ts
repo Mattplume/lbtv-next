@@ -1,11 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import {
-  FacebookTokenResponse,
-  VercelEnvVar,
-  VercelEnvResponse,
-  RefreshTokenResponse,
-  ErrorResponse,
-} from "../../types";
+import { FacebookTokenResponse, VercelEnvResponse } from "../../types";
 
 const VERCEL_TOKEN = process.env.VERCEL_TOKEN;
 const PROJECT_ID = process.env.VERCEL_PROJECT_ID;
