@@ -1,50 +1,16 @@
 const FACEBOOK_API_BASE = "https://graph.facebook.com/v15.0";
-const APP_ID = process.env.FB_APP_ID;
-const APP_SECRET = process.env.FB_APP_SECRET;
 
-// On initialise le token avec la variable d'environnement, s'il existe.
-let cachedToken: string | null = process.env.FB_PAGE_ACCESS_TOKEN || null;
-let tokenExpiration: number | null = null;
+// On initialise le token avec la variable d'environnement
+const cachedToken: string | null = process.env.FB_PAGE_ACCESS_TOKEN || null;
 
 /**
- * Vérifie si le token est encore valide.
+ * Retourne le token d'accès de page.
  */
-function isTokenValid(): boolean {
-  return (
-    cachedToken !== null &&
-    tokenExpiration !== null &&
-    Date.now() < tokenExpiration
-  );
-}
-
-/**
- * Renouvelle le token longue durée en utilisant le token actuel.
- */
-async function fetchLongLivedToken(): Promise<void> {
+async function getFacebookToken(): Promise<string> {
   if (!cachedToken) {
     throw new Error("Aucun token d'accès de page disponible.");
   }
-  const url = `${FACEBOOK_API_BASE}/oauth/access_token?grant_type=fb_exchange_token&client_id=${APP_ID}&client_secret=${APP_SECRET}&fb_exchange_token=${cachedToken}`;
-  const res = await fetch(url);
-  const data = await res.json();
-
-  if (!data.access_token || !data.expires_in) {
-    console.log("data", data);
-    throw new Error("Impossible d'obtenir le token longue durée.");
-  }
-
-  cachedToken = data.access_token;
-  tokenExpiration = Date.now() + data.expires_in * 1000; // Conversion en millisecondes
-}
-
-/**
- * Retourne un token valide en renouvelant le token si nécessaire.
- */
-async function getFacebookToken(): Promise<string> {
-  if (!isTokenValid()) {
-    await fetchLongLivedToken();
-  }
-  return cachedToken!;
+  return cachedToken;
 }
 
 /**
@@ -76,10 +42,27 @@ export async function getFacebookVideos(
   }
   const url = `${FACEBOOK_API_BASE}/${playlistId}/videos?${params.toString()}`;
 
-  const options: NextFetchOptions = { next: { revalidate: 3600 } };
+  console.log(`[Facebook API] Appel pour le playlist ${playlistId}`);
+
+  const options: NextFetchOptions = { next: { revalidate: 60 } }; // Cache réduit à 1 minute pour tester
   const res = await fetch(url, options);
+
+  console.log(
+    `[Facebook API] Réponse pour ${playlistId}: ${res.status} ${res.statusText}`
+  );
+
   if (!res.ok) {
-    throw new Error("Erreur lors de la récupération des vidéos Facebook");
+    const errorText = await res.text();
+    console.error(`[Facebook API] Erreur pour ${playlistId}:`, errorText);
+    throw new Error(
+      `Erreur lors de la récupération des vidéos Facebook: ${res.status} ${res.statusText}`
+    );
   }
-  return res.json();
+
+  const data = await res.json();
+  console.log(
+    `[Facebook API] Succès pour ${playlistId}: ${data.data?.length || 0} vidéos`
+  );
+
+  return data;
 }
