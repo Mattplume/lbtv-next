@@ -19,14 +19,14 @@ export type SearchParamsType = {
   created_time?: string;
 };
 
- type VideoThumbail = {
-   data: VideoData[];
- }
+type VideoThumbail = {
+  data: VideoData[];
+};
 
 type VideoData = {
   uri: string;
-}
- 
+};
+
 export interface PageHeaderInfos {
   title: string;
   description: string;
@@ -40,4 +40,4 @@ export interface DerbyMagazineInfos {
 type Poster = {
   url: string;
   alt: string;
-}
+};

@@ -20,11 +20,11 @@ export default function ShowPageClient(props: ShowPageClientProps) {
   const isDesktop = useMediaQuery({ minWidth: 1024 });
 
   // Référence pour le conteneur vidéo.
-  // Ce conteneur aura un ratio fixe de 16:9, c’est-à-dire un padding-bottom de 56.25%.
+  // Ce conteneur aura un ratio fixe de 16:9, c'est-à-dire un padding-bottom de 56.25%.
   const containerRef = useRef<HTMLDivElement>(null);
-  // État pour stocker le style calculé pour l’iframe
+  // État pour stocker le style calculé pour l'iframe
   const [iframeStyle, setIframeStyle] = useState<React.CSSProperties>({});
-  // Pour l’espace restant en haut/bas ou gauche/droite
+  // Pour l'espace restant en haut/bas ou gauche/droite
   const [barStyles, setBarStyles] = useState<{
     top?: React.CSSProperties;
     bottom?: React.CSSProperties;
@@ -54,7 +54,7 @@ export default function ShowPageClient(props: ShowPageClientProps) {
       gapLeft = 0,
       gapRight = 0;
 
-    // On souhaite que l’iframe affiche la vidéo en conservant son aspect ratio naturel (naturalRatio).
+    // On souhaite que l'iframe affiche la vidéo en conservant son aspect ratio naturel (naturalRatio).
     // Si naturalRatio < 16/9, la vidéo est plus portrait ou carrée : la hauteur sera limitée par containerHeight,
     // et la largeur idéale est containerHeight * naturalRatio. Le gap horizontal est la différence.
     // Sinon, si naturalRatio >= 16/9, la largeur sera limitée par containerWidth, et la hauteur idéale est containerWidth / naturalRatio.

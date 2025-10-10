@@ -17,6 +17,20 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: "/news/:path*",
+        destination: "https://www.facebook.com/labauletv",
+        permanent: false,
+      },
+      {
+        source: "/shows/:path*",
+        destination: "https://www.facebook.com/labauletv",
+        permanent: false,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
